@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 import br.com.Modelo.Criterios;
-import br.com.Modelo.Pesquisador;
 import br.com.Modelo.Resultado;
 
 public class LattesMetricService {

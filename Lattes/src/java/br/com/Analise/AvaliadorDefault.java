@@ -55,6 +55,7 @@ public class AvaliadorDefault implements Avaliador {
     private float ORIENTACAO_AE = 0;
     private float COORIENTACAO_PDR = 0;
     private float ORIENTACAO_PDR = 0;
+    private float DOUTOR = 0;
 
     public void avaliar() {
     }
@@ -91,6 +92,8 @@ public class AvaliadorDefault implements Avaliador {
          ORIENTACAO_AE = 0;
          COORIENTACAO_PDR = 0;
          ORIENTACAO_PDR = 0;
+         DOUTOR = crit.getDoutor();
+         
         XPathFactory xPathfactory = XPathFactory.newInstance();
         XPath xpath = xPathfactory.newXPath();
         Resultado result = new Resultado();
@@ -196,6 +199,7 @@ public class AvaliadorDefault implements Avaliador {
             setLattes(xpath, result, document);
             setResumoCV(xpath, result, document);
             avaliaVinculoDedicacaoExclusiva(xpath, result, document);
+            avaliaDoutor(xpath, result, document);
 //            Artigos completos períodicos A (qualis área)
 //            Artigos completos períodicos B1 e B2 (qualis área)
 //            Artigos completos em periódico  B3 e B5 (qualis área)
@@ -217,6 +221,7 @@ public class AvaliadorDefault implements Avaliador {
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            
         }
         if(crit.getArea().equals("humanas")){
         	setNomeCompleto(xpath, result, document);
@@ -571,6 +576,28 @@ public class AvaliadorDefault implements Avaliador {
         	obra.setValido(true);
         	obra.setValor(0);
         	obra.setNome("Não possui  o regime de Dedicação Exclusiva");
+        }
+        levante.AddObra(obra);
+        result.AddLevante(levante);
+    }
+    
+    private void avaliaDoutor(XPath xpath, Resultado result, Document document) throws XPathExpressionException {
+        XPathExpression expr = xpath.compile("//FORMACAO-ACADEMICA-TITULACAO/DOUTORADO");
+        NodeList doutor = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        String dexc = expr.evaluate(document);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Doutor");
+        Obras obra = new Obras();
+        if (0 < doutor.getLength()) {
+        	levante.setTotalValor(DOUTOR);
+        	obra.setValor(DOUTOR);
+        	result.someTotal(DOUTOR);
+        	obra.setNome("Possui doutorado");
+        } else {
+        	levante.setTotalValor(0);
+        	obra.setValido(true);
+        	obra.setValor(0);
+        	obra.setNome("Não possui  doutorado");
         }
         levante.AddObra(obra);
         result.AddLevante(levante);

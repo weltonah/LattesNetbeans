@@ -1,10 +1,14 @@
 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html >
   <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style>
 span.glyphicon {
     font-size: 2.0em;
@@ -16,7 +20,13 @@ span.glyphicon {
 .red {
     color: red;
 }
-
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 60px; /* altura do seu footer */
+}
 </style>
   </head>
   
@@ -28,7 +38,7 @@ span.glyphicon {
 	<form class="form-horizontal" action="submitCriterio">
             
 	<div class="col-sm-12">
-            <h2>Área do conhecimento </h2>
+            <h3>Área do conhecimento </h2>
             <div class="col-sm-6">
 		<select class=" form-control" name="area" id="area">
 		  <option value="exata">Ciências Exatas</option>
@@ -42,7 +52,7 @@ span.glyphicon {
             </div>
         </div>
 	<div class="col-md-12">
-	<h2>Critérios analisados</h2>
+	<h3>Critérios analisados</h2>
         <div class="well">
 		<div id="exata" class="formulario">
 			<div>
@@ -343,7 +353,7 @@ span.glyphicon {
 				Regime de Dedicação Exclusiva
 			</div>
                         <div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Doutor
 			</div>
 			<div>

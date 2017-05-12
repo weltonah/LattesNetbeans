@@ -5,9 +5,14 @@
 <!DOCTYPE html>
 <html >
   <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="<c:url value="transition.min.js" />"></script>
   </head>
   <body>
+       <c:import url="cabecalho.jsp" />
    <h1>${resultado.getNomeCompleto()}: ${resultado.getTotalValor()}</h1>
     <dl>
         <dt>Lattes</dt>
@@ -82,5 +87,17 @@
 			</table>
 		
 		</c:forEach>
+    </details>   
+    
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-target
+      </button>
+      <div class="collapse" id="collapseExample">
+        <div class="well">
+          .asdaskdjhasiuhdiuashudh
+        </div>
+      </div>
+    
+    <c:import url="rodape.jsp" />
   </body>
 </html>

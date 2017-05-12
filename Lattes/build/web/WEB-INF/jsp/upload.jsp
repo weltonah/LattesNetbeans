@@ -18,10 +18,21 @@
         .inputfile + label {
 	cursor: pointer;
         }
+        
+        footer{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            margin-top: 10px;
+        }
 	</style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
+       <c:import url="cabecalho.jsp" />
   <div>
     <div class="col-sm-12">
 	  <div class="center" style="width: 50%; border-style: solid;">
@@ -53,7 +64,10 @@
 		      <div class="well">
 		        <form method="post" action="upload"
 			          enctype="multipart/form-data">
-                            <h3>Arquivo Lattes formato .zip do professor </h3> <input type="file" name="file" class="btn btn-primary btn-lg" size="100" />
+                            <h3>Arquivo Lattes formato .zip do professor </h3> 
+                            <div class="col-xs-12" >
+                            <input type="file" name="file" class="btn btn-primary"  />
+                            </div>
                             <br><br>
                             <div align="right">
                                 <button onclick='javascript:history.back();self.location.reload();' class="btn btn-danger">Voltar</button>
@@ -65,6 +79,6 @@
 		     </div>
 		    </div>
       
-    
+    <c:import url="rodape.jsp" />
   </body>
 </html>

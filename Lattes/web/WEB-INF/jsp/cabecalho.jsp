@@ -1,7 +1,8 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div >
-<h2  class="center" >Programa de Analise de curriculo Lattes</h2>
+<div style="background-color: red;" >
+    <hr>
+<h2  class="center" >Programa de Análise de currículo Lattes</h2>
 <hr/>
 </div>
