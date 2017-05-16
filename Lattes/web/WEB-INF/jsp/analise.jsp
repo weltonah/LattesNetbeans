@@ -5,15 +5,12 @@
 <!DOCTYPE html>
 <html >
   <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
- integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="<c:url value="transition.min.js" />"></script>
+    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
   </head>
   <body>
        <c:import url="cabecalho.jsp" />
-   <h1>${resultado.getNomeCompleto()}: ${resultado.getTotalValor()}</h1>
+   <h1>${resultado.getNomeCompleto()}: ${resultado.getTotalValor()} pontos</h1>
     <dl>
         <dt>Lattes</dt>
         <dd><a href="http://lattes.cnpq.br/${resultado.getLattes()}" target="_blank">http://lattes.cnpq.br/${resultado.getLattes()}</a></dd>
@@ -89,14 +86,6 @@
 		</c:forEach>
     </details>   
     
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Button with data-target
-      </button>
-      <div class="collapse" id="collapseExample">
-        <div class="well">
-          .asdaskdjhasiuhdiuashudh
-        </div>
-      </div>
     
     <c:import url="rodape.jsp" />
   </body>

@@ -5,10 +5,9 @@
 <!DOCTYPE html>
 <html >
   <head>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
- integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+ 
 <style>
 span.glyphicon {
     font-size: 2.0em;
@@ -34,7 +33,7 @@ body {
   
   <body>
       <c:import url="cabecalho.jsp" />
-      
+      <div class="mx-auto" style="margin: 0 auto; width: 70%; position: relative;">
 	<form class="form-horizontal" action="submitCriterio">
             
 	<div class="col-sm-12">
@@ -53,7 +52,7 @@ body {
         </div>
 	<div class="col-md-12">
 	<h3>Critérios analisados</h2>
-        <div class="well">
+        <div class="well" style="background-color: #e6eeff;">
 		<div id="exata" class="formulario">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -587,6 +586,7 @@ body {
     <br>
     <br>
     <br>
+  </div>
     <c:import url="rodape.jsp" />
   </body>
   <script>
