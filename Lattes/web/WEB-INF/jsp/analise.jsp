@@ -6,25 +6,34 @@
 <html >
   <head>
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <style>
+          
+      
+    </style>
+        
   </head>
   <body>
        <c:import url="cabecalho.jsp" />
-   <h1>${resultado.getNomeCompleto()}: ${resultado.getTotalValor()} pontos</h1>
+<div class="mx-auto" style="margin: 0 auto; width: 70%; position: relative;">
+    <h1>${resultado.getNomeCompleto()}: ${resultado.getTotalValor()} pontos</h1>
     <dl>
-        <dt>Lattes</dt>
-        <dd><a href="http://lattes.cnpq.br/${resultado.getLattes()}" target="_blank">http://lattes.cnpq.br/${resultado.getLattes()}</a></dd>
-        <dt>Resumo CV</dt>
-        <dd>${resultado.getResumoCV()}</dd>
-        <dt>Atualização</dt>
+        <dt></dt>
+        <dd> Link Lattes :  <a class=" glyphicon glyphicon-link btn btn-link" href="http://lattes.cnpq.br/${resultado.getLattes()}" target="_blank"> Numero:${resultado.getLattes()}</a></dd>
+        <dt>Resumo do currículo</dt>
+        <blockquote> <dd> <h4>${resultado.getResumoCV()} </h4></dd></blockquote>
+        <dt>Ultima atualização</dt>
         <dd>${resultado.getAtualizacao()}</dd>
-        <dt>Pontuação no Triênio</dt>
-        <dd>${resultado.getTotalValor()}</dd>
     </dl>
+    
+    <div>
+    <hr size="30" style="border: 1px solid #ccc">
+    </div>
+    
+    
+    <div class="well">
     <h2>Sumário</h2>
-
     <table class="table table-sm summary">
-        <tr>
+        <tr style="background-color: #e6eeff;">
             <th>Categoria</th>
             <th>Quantidade</th>
             <th>Pontuação</th>
@@ -36,38 +45,66 @@
                 <td>${tipo.getTotalValor()}</td>
             </tr>
         </c:forEach>
+            <tr style="background-color: #bfbfbf;">
+                <th>Total de pontos no triênio</th>
+                <td></td>
+                <td>${resultado.getTotalValor()}</td>
+            </tr>
     </table>
-
-    <details>
-        <summary>
-            <h2>Avaliação completa</h2>
+    </div>
+    <div class="col-md-12">
+    <hr size="30" style="border: 1px solid #ccc">
+    </div>
+    
+    <details >
+        <summary class="btn btn-info btn-lg" type="button" >
+            <span >Avaliação completa</span>
         </summary>
+        
+        <div  class="col-md-12">
+            <div class="col-md-6 " style="background-color: #fff5cc;">
+            <table class="well table table-sm">
+                <h3>Legenda</h3>
+                <tr style="background-color: #ccffeb;">
+                    <th>Objeto analisado se encontra dentro do triênio</th>
+                </tr>
+                <tr style="background-color: #ffcccc;;">
+                    <th>Objeto analisado se encontra fora do triênio</th>
+                </tr>
+            </table>
+            </div>
+            <div class="col-md-6">
+                
+            </div>
+            
+        </div>
 		<c:forEach var="levante" items="${resultado.getLevante()}">
 			<h2>${levante.getTipoObra()}</h2>
+                        <div class="well">
 			<table class="table table-sm">
 			
-				<tr>
-		                <th>Descrição</th>
-		                <th>valor</th>
-		            </tr>
+				<tr style="background-color: #e6eeff;">
+                                    <th>Descrição</th>
+                                    <th>valor</th>
+                                </tr>
 		            <c:forEach var="agenda" items="${levante.getAgenda()}">
 		      		<c:choose>
 	  					<c:when test="${agenda.getValor() == 0}">
-			             <tr>
-			             	<td><del>${agenda.getNome()}</del></td>
-		                    <th>${agenda.getValor()}</th>
-	                	</tr>
+			             <tr style="background-color: #ffcccc;">
+			             	<td>${agenda.getNome()}</td>
+                                        <th>${agenda.getValor()}</th>
+                                    </tr>
 	                	</c:when>
 	                	<c:otherwise>
 				             <c:choose>
 			  					<c:when test="${!agenda.isValido()}">
-					             <tr>
-					             	<td><del>${agenda.getNome()}</del></td>
+					             <tr style="background-color: #ffcccc;">
+					             	<td>${agenda.getNome()}</td>
 				                    <th>0</th>
 			                	</tr>
 			                	</c:when>
 			                	<c:otherwise>
-						             <tr>
+						             <tr style="background-color: #ccffeb;">
 						             	<td>${agenda.getNome()}</td>
 					                    <th>${agenda.getValor()}</th>
 				                	</tr>
@@ -77,16 +114,21 @@
               	 	 </c:choose>
               	  
                 	</c:forEach>
-               	<tr>
-	                <th>Total</th>
-	                <th>${levante.getTotalValor()}</th>
-	            </tr>
+                        <tr style="background-color: #bfbfbf;">
+                            <th>Total</th>
+                            <th>${levante.getTotalValor()}</th>
+                        </tr>
 			</table>
-		
+                        </div>
 		</c:forEach>
+        
     </details>   
     
+</div>
     
     <c:import url="rodape.jsp" />
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/transition.js" />"></script>
+    <script src="<c:url value="/resources/js/collapse.js" />"></script>
   </body>
 </html>
