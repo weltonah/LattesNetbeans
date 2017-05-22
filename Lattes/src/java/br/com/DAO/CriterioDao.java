@@ -52,8 +52,8 @@ public class CriterioDao {
 			// Fator de impacto
 			//Artigos completos em peri�dico indexados (dependo do fator de impacto)*	  *: 5pontos FI<0.5;    15 pontos 0.5<FI<3.0;   20 pontos FI>3.0					
 			//Artigos completos aceitos para publica��o (depende do fator de impacto)**	**: 3pontos FI<0.5;    8 pontos 0.5<FI<3.0;     10 pontos FI>3.0			
-			float artCompPerioInd= -1 ;
-			float artCompAceitoPublic= -1 ;
+			float artCompPerioInd= 15 ;
+			float artCompAceitoPublic= 8 ;
 			float livro= 15 ;
 			float capLivro=  10;
 			float orgLivro=  0;

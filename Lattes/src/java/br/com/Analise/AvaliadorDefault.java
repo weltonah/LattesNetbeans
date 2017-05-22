@@ -24,7 +24,7 @@ import br.com.Modelo.Resultado;
  */
 public class AvaliadorDefault implements Avaliador {
 
-    public static final int ANO_TRIENIO = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).getYear() - 3;
+    public static final int ANO_TRIENIO = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).getYear() - 4;
     private float DEDICACAO_EXCLUSIVA = 10;
     private float ARTIGO_COMPLETO_INDEXADO_PUBLICADO = 15;
     private float ARTIGO_COMPLETO_ACEITO = 8;
@@ -93,11 +93,11 @@ public class AvaliadorDefault implements Avaliador {
          COORIENTACAO_PDR = 0;
          ORIENTACAO_PDR = 0;
          DOUTOR = crit.getDoutor();
-         
         XPathFactory xPathfactory = XPathFactory.newInstance();
         XPath xpath = xPathfactory.newXPath();
         Resultado result = new Resultado();
         if(crit.getArea().equals("exata")){
+            
         	setNomeCompleto(xpath, result, document);
             setAtualizacao(xpath, document, result);
             setLattes(xpath, result, document);
@@ -110,12 +110,14 @@ public class AvaliadorDefault implements Avaliador {
             avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
             setPatentes(xpath, result, document);
+            
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("biologica")){
         	setNomeCompleto(xpath, result, document);
@@ -126,22 +128,23 @@ public class AvaliadorDefault implements Avaliador {
          // Fator de impacto
 		//Artigos completos em periódico indexados (dependo do fator de impacto)*	  *: 5pontos FI<0.5;    15 pontos 0.5<FI<3.0;   20 pontos FI>3.0					
 		//Artigos completos aceitos para publicação (depende do fator de impacto)**	**: 3pontos FI<0.5;    8 pontos 0.5<FI<3.0;     10 pontos FI>3.0			
-            // avaliaArtigosPublicados(xpath, result, document);
-            //avaliaArtigosAceitos(xpath, result, document);
+            avaliaArtigosPublicados(xpath, result, document); // Não esta sendo avaliado o fator de impacto
+            avaliaArtigosAceitos(xpath, result, document); // Não esta sendo avaliado o fator de impacto
             //avaliaTrabalhoEmEventos(xpath, result, document);
             avaliaLivrosPublicados(xpath, result, document);
           //  avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
+            setBancaMestrado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("eng")){
-        	setNomeCompleto(xpath, result, document);
+            setNomeCompleto(xpath, result, document);
             setAtualizacao(xpath, document, result);
             setLattes(xpath, result, document);
             setResumoCV(xpath, result, document);
@@ -152,17 +155,18 @@ public class AvaliadorDefault implements Avaliador {
 //            Artigos completos publicados em periódicos sem JCR ou C
            // avaliaArtigosPublicados(xpath, result, document);
            // avaliaArtigosAceitos(xpath, result, document);
-            
+            avaliaLivrosPublicados(xpath, result, document);
+            avaliaCapitulosPublicados(xpath, result, document);
+            avaliaLivrosOrganizado(xpath, result, document);
             // maximo 9 de inter+nacional
             avaliaTrabalhoEmEventosNacInte(xpath, result, document);
-            avaliaLivrosPublicados(xpath, result, document);
-            avaliaLivrosOrganizado(xpath, result, document);
-            avaliaCapitulosPublicados(xpath, result, document);
+            
+            
             setPatentes(xpath, result, document);
             // maximo 6
             setBancaMestrado(xpath, result, document);
-            // maximo 3
-            setBancaDoutorado(xpath, result, document);
+            // maxima 3
+             setBancaDoutorado(xpath, result, document);
             //maximo 3
             setBancaQualificacao(xpath, result, document);
             setOrientacaoMestradoConcluida(xpath, result, document);
@@ -172,6 +176,7 @@ public class AvaliadorDefault implements Avaliador {
 //            maximo 9 Orientação de Mestrado em Andamento
 //            maximo 24 Orientação Iniciação Científica andamento/concluída 
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("saude")){
         	setNomeCompleto(xpath, result, document);
@@ -181,10 +186,10 @@ public class AvaliadorDefault implements Avaliador {
             avaliaVinculoDedicacaoExclusiva(xpath, result, document);
             avaliaArtigosPublicados(xpath, result, document);
             avaliaArtigosAceitos(xpath, result, document);
-            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             avaliaLivrosPublicados(xpath, result, document);
-            avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
+            avaliaLivrosOrganizado(xpath, result, document);
+            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
@@ -192,6 +197,7 @@ public class AvaliadorDefault implements Avaliador {
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("social")){
         	setNomeCompleto(xpath, result, document);
@@ -221,6 +227,7 @@ public class AvaliadorDefault implements Avaliador {
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
             
         }
         if(crit.getArea().equals("humanas")){
@@ -242,6 +249,7 @@ public class AvaliadorDefault implements Avaliador {
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("letras")){
         	setNomeCompleto(xpath, result, document);
@@ -262,6 +270,7 @@ public class AvaliadorDefault implements Avaliador {
             setOrientacaoMestradoConcluida(xpath, result, document);
             setOrientacaoDoutoradoConcluida(xpath, result, document);
             setOrientacaoEmAndamento(xpath, result, document);
+            serOrientacaoIC(xpath, result, document);
         }
         /*
         setNomeCompleto(xpath, result, document);
@@ -287,7 +296,7 @@ public class AvaliadorDefault implements Avaliador {
         XPathExpression expr = xpath.compile("//ARTIGO-PUBLICADO");
         NodeList artigos = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         Levantamento levante = new Levantamento();
-        levante.setTipoObra("Artigos completos em periódico");
+        levante.setTipoObra("Artigos completos em periódico indexados");
         Levantamento levante2 = new Levantamento();
         levante2.setTipoObra("Artigos em periódico");
         Obras obra;
@@ -393,6 +402,7 @@ public class AvaliadorDefault implements Avaliador {
         result.AddLevante(levante);
         result.someTotal(comp);
     }
+    
     private void avaliaLivrosOrganizado(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//LIVRO-PUBLICADO-OU-ORGANIZADO");
         NodeList livros = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
@@ -520,8 +530,8 @@ public class AvaliadorDefault implements Avaliador {
         }
         levante.setTotalValor(comp);
         levante2.setTotalValor(incomp);
-        result.AddLevante(levante);
         result.AddLevante(levante2);
+        result.AddLevante(levante);
         result.someTotal(comp+incomp);
     }
     
@@ -638,8 +648,8 @@ public class AvaliadorDefault implements Avaliador {
         }
         levante.setTotalValor(comp);
         levante2.setTotalValor(incomp);
-        result.AddLevante(levante);
         result.AddLevante(levante2);
+        result.AddLevante(levante);
         result.someTotal(comp+incomp);
     }
 
@@ -679,7 +689,7 @@ public class AvaliadorDefault implements Avaliador {
         levante.setTotalValor(comp);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
-        result.AddLevante(levante2);
+        //result.AddLevante(levante2);
         result.someTotal(comp+incomp);
     }
 
@@ -719,7 +729,7 @@ public class AvaliadorDefault implements Avaliador {
         levante.setTotalValor(comp);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
-        result.AddLevante(levante2);
+        //result.AddLevante(levante2);
         result.someTotal(comp+incomp);
     }
 
@@ -843,24 +853,72 @@ public class AvaliadorDefault implements Avaliador {
         result.AddLevante(levante2);
         result.someTotal(comp+incomp);
     }
-
+    
+    private void serOrientacaoIC(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//DADOS-BASICOS-DE-OUTRAS-ORIENTACOES-CONCLUIDAS");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Orientação Iniciação Científica andamento/concluída ");
+        Obras obra;
+        float comp=0,comp1=0,comp2=0,comp3=0,comp4=0;
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getAttributes().getNamedItem("TITULO").getTextContent();
+            String natureza = orientacao.getAttributes().getNamedItem("NATUREZA").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if(natureza.equalsIgnoreCase("INICIACAO_CIENTIFICA")){
+            	obra.setNome("Orientação de Iniciação Ciêntifica Concluida (" + ano + ") " + titulo);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		comp = comp+ORIENTACAO_IC;
+            	obra.setValor(ORIENTACAO_IC);
+            	levante.AddObra(obra);
+            }
+        }
+        expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-INICIACAO-CIENTIFICA");
+        orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        System.out.println(orientacoesDoutoradoAndamento.getLength());
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String natureza = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("NATUREZA").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if(natureza.equalsIgnoreCase("Iniciação Científica")){
+            	obra.setNome("Orientação de Iniciação Ciêntifica em Andamento (" + ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		comp = comp+ORIENTACAO_IC;
+            	obra.setValor(ORIENTACAO_IC);
+            	levante.AddObra(obra);
+                System.out.println(titulo);
+                System.out.println(natureza);
+                System.out.println(ano);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
     private void setOrientacaoEmAndamento(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//ORIENTACOES-EM-ANDAMENTO/*");
         NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         Levantamento levante = new Levantamento();
-        levante.setTipoObra("Orientação em andamento de doutorado");// exatas
+        levante.setTipoObra("Orientação em andamento de doutorado");// eng
         Levantamento levante2 = new Levantamento();
-        levante2.setTipoObra("Orientação em andamento de mestrado");// exatas
+        levante2.setTipoObra("Orientação em andamento de mestrado");// eng
         Levantamento levante3 = new Levantamento();
         levante3.setTipoObra("Orientação em andamento de pósdoutorado");
         Levantamento levante4 = new Levantamento();
         levante4.setTipoObra("Orientação em andamento de aperfeicoamento e especialização");
         Levantamento levante5 = new Levantamento();
         levante5.setTipoObra("Orientação em andamento de graduação");
-        Levantamento levante6 = new Levantamento();
-        levante6.setTipoObra("Orientação em andamento de Iniciação Ciêntifica");// exatas
         Obras obra;
-        float comp=0,comp1=0,comp2=0,comp3=0,comp4=0,comp5=0;
+        float comp=0,comp1=0,comp2=0,comp3=0,comp4=0;
         for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
             Node orientacao = orientacoesDoutoradoAndamento.item(i);
             String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
@@ -963,23 +1021,6 @@ public class AvaliadorDefault implements Avaliador {
 //                	obra.setValor(ORIENTACAO_GR);
 //                	levante5.AddObra(obra);
 //                }
-            } else if (tipo.equalsIgnoreCase("ORIENTACAO-EM-ANDAMENTO-DE-INICIACAO-CIENTIFICA")) {
-            	obra.setNome("Orientação de Iniciação Ciêntifica em Andamento (" + ano + ") " + titulo + "," + aluno);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp5 = comp5+ORIENTACAO_IC;
-            	obra.setValor(ORIENTACAO_IC);
-            	
-            	levante6.AddObra(obra);
-            } else {
-            	obra.setNome("Outra Orientação em Andamento (" + ano + ") " + titulo + "," + aluno);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp5 = comp5+ORIENTACAO_IC;
-            	obra.setValor(ORIENTACAO_IC);
-            	levante6.AddObra(obra);
             }
         }
         levante.setTotalValor(comp);
@@ -987,14 +1028,12 @@ public class AvaliadorDefault implements Avaliador {
         levante3.setTotalValor(comp2);
         levante4.setTotalValor(comp3);
         levante5.setTotalValor(comp4);
-        levante6.setTotalValor(comp5);
         result.AddLevante(levante);
         result.AddLevante(levante2);
 //        result.AddLevante(levante3);
 //        result.AddLevante(levante4);
 //        result.AddLevante(levante5);
-        result.AddLevante(levante6);
-        result.someTotal(comp+comp1+comp2+comp3+comp4+comp5);
+        result.someTotal(comp+comp1+comp2+comp3+comp4);
     }
   
 }
