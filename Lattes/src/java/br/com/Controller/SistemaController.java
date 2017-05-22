@@ -30,10 +30,12 @@ public class SistemaController {
 	@RequestMapping("/criterio")
 	public String criterio() {
 	return "criterio";
+        //return "manutencao";
 	}
         @RequestMapping("/")
 	public String index() {
 	return "criterio";
+         //return "manutencao";
 	}
 	@RequestMapping("/login")
 	public String login() {

@@ -904,6 +904,8 @@ public class AvaliadorDefault implements Avaliador {
         result.AddLevante(levante);
         result.someTotal(comp);
     }
+    
+    
     private void setOrientacaoEmAndamento(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//ORIENTACOES-EM-ANDAMENTO/*");
         NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
