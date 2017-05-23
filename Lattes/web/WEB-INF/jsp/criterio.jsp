@@ -51,7 +51,6 @@ body {
             </div>
         </div>
 	<div class="col-md-12">
-        <h1>Sistema em Manutenção</h1>
 	 <h3>Critérios analisados</h3>
         <div class="well" style="background-color: #e6eeff;">
 		<div id="exata" class="formulario">
@@ -597,9 +596,9 @@ body {
         <div align="right"><button type="submit" class="btn btn-primary">Selecionar</button></div>
         </div>
         </form>	
-    <br>
-    <br>
-    <br>
+          <div class="col-md-12">
+            <br><br><br>
+          </div>
   </div>
     <c:import url="rodape.jsp" />
   </body>

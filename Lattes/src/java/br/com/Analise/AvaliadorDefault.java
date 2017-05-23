@@ -145,7 +145,6 @@ public class AvaliadorDefault implements Avaliador {
             setPatentes(xpath, result, document);
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
-            
             setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);

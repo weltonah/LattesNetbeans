@@ -6,14 +6,13 @@
 <html >
   <head>
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-    <style>
-          
       
-    </style>
-        
   </head>
   <body>
+      <div class="row">
        <c:import url="cabecalho.jsp" />
+      </div>
+       
 <div class="mx-auto" style="margin: 0 auto; width: 70%; position: relative;">
     <h1>${resultado.getNomeCompleto()}: ${resultado.getTotalValor()} pontos</h1>
     <dl>
@@ -127,11 +126,16 @@
                         </div>
 		</c:forEach>
         
-    </details>   
+    </details>
+            
+    <div class="col-md-12">
+        <br><br><br>
+    </div>
     
 </div>
-    
-    <c:import url="rodape.jsp" />
+    <div class="row">
+        <c:import url="rodape.jsp" />
+    </div>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
     <script src="<c:url value="/resources/js/transition.js" />"></script>
     <script src="<c:url value="/resources/js/collapse.js" />"></script>
