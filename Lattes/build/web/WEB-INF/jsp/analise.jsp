@@ -35,18 +35,23 @@
     <table class="table table-sm summary">
         <tr style="background-color: #e6eeff;">
             <th>Categoria</th>
-            <th>Quantidade</th>
-            <th>Pontuação</th>
+            <th>Quantidade <br>
+                (Validos/Total)
+            </th>
+            <th>Pontuação por item</th>
+            <th>Pontuação total</th>
         </tr>
         <c:forEach var="tipo" items="${resultado.getLevante()}">
             <tr>
                 <th>${tipo.getTipoObra()}</th>
-                <td>${tipo.getAgenda().size()}</td>
+                <td>${tipo.getValida()} / ${tipo.getAgenda().size()}</td>
+                <td>${tipo.getValorItem()}</td>
                 <td>${tipo.getTotalValor()}</td>
             </tr>
         </c:forEach>
             <tr style="background-color: #bfbfbf;">
                 <th>Total de pontos no triênio</th>
+                <td></td>
                 <td></td>
                 <td>${resultado.getTotalValor()}</td>
             </tr>

@@ -135,7 +135,7 @@ public class CriterioDao {
 			float doutor=  0;
 			// tara 12
 			float oriTfc = (float) 0.5;
-			System.out.println(coriMestConc);
+			
 			crit = new Criterios(aux,dedicacaoExclusiva,artCompPerioInd,artCompAceitoPublic
 					,livro,capLivro,orgLivro,trabEvento,trabEventoInter,trabEventoNaci,
 					depPatenteNac,depPatenteInt,bancMestr,bancDout,bancQualDout,oriDoutAndConc,

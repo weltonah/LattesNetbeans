@@ -65,8 +65,8 @@ public class AvaliadorDefault implements Avaliador {
     @Override
     public Resultado avaliar2(Document document , Criterios crit) throws Exception {
     	 DEDICACAO_EXCLUSIVA = crit.getDedicacaoExclusiva();
-         ARTIGO_COMPLETO_INDEXADO_PUBLICADO = crit.getArtCompAceitoPublic();
-         ARTIGO_COMPLETO_ACEITO = crit.getArtCompPerioInd();
+         ARTIGO_COMPLETO_INDEXADO_PUBLICADO = crit.getArtCompPerioInd();
+         ARTIGO_COMPLETO_ACEITO = crit.getArtCompAceitoPublic();
          LIVRO_PUBLICADO = crit.getLivro();
          LIVRO_CAPITULO = crit.getCapLivro();
          LIVRO_ORGANIZACAO = crit.getOrgLivro();
@@ -136,15 +136,16 @@ public class AvaliadorDefault implements Avaliador {
          // Fator de impacto
 		//Artigos completos em periódico indexados (dependo do fator de impacto)*	  *: 5pontos FI<0.5;    15 pontos 0.5<FI<3.0;   20 pontos FI>3.0					
 		//Artigos completos aceitos para publicação (depende do fator de impacto)**	**: 3pontos FI<0.5;    8 pontos 0.5<FI<3.0;     10 pontos FI>3.0			
-            avaliaArtigosPublicados(xpath, result, document); // Não esta sendo avaliado o fator de impacto
-            avaliaArtigosAceitos(xpath, result, document); // Não esta sendo avaliado o fator de impacto
+           //** avaliaArtigosPublicados(xpath, result, document); // Não esta sendo avaliado o fator de impacto
+           //** avaliaArtigosAceitos(xpath, result, document); // Não esta sendo avaliado o fator de impacto
             //avaliaTrabalhoEmEventos(xpath, result, document);
             avaliaLivrosPublicados(xpath, result, document);
           //  avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
             setBancaMestrado(xpath, result, document);
+            setBancaDoutorado(xpath, result, document);
+            
             setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
@@ -349,6 +350,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ARTIGO_COMPLETO_INDEXADO_PUBLICADO);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
        // result.AddLevante(levante2);
@@ -390,6 +392,7 @@ public class AvaliadorDefault implements Avaliador {
             
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ARTIGO_COMPLETO_ACEITO);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
        // result.AddLevante(levante2);
@@ -421,6 +424,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(LIVRO_PUBLICADO);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -449,6 +453,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(LIVRO_ORGANIZACAO);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -474,6 +479,7 @@ public class AvaliadorDefault implements Avaliador {
         	levante.AddObra(obra);
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(LIVRO_CAPITULO);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -507,6 +513,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(TRABALHO_COMPLETO_EVENTO);
         result.AddLevante(levante);
         result.someTotal(comp+incomp);
     }
@@ -551,7 +558,9 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(TRABALHO_COMPLETO_EVENTO_NAC);
         levante2.setTotalValor(incomp);
+        levante2.setValorItem(TRABALHO_COMPLETO_EVENTO_INTE);
         result.AddLevante(levante2);
         result.AddLevante(levante);
         result.someTotal(comp+incomp);
@@ -610,6 +619,7 @@ public class AvaliadorDefault implements Avaliador {
         	obra.setNome("Não possui  o regime de Dedicação Exclusiva");
         }
         levante.AddObra(obra);
+        levante.setValorItem(DEDICACAO_EXCLUSIVA);
         result.AddLevante(levante);
     }
     
@@ -632,6 +642,7 @@ public class AvaliadorDefault implements Avaliador {
         	obra.setNome("Não possui  doutorado");
         }
         levante.AddObra(obra);
+        levante.setValorItem(DOUTOR);
         result.AddLevante(levante);
     }
 
@@ -669,7 +680,9 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(PATENTE_INTERNACIONAL);
         levante2.setTotalValor(incomp);
+        levante2.setValorItem(PATENTE_NACIONAL);
         result.AddLevante(levante2);
         result.AddLevante(levante);
         result.someTotal(comp+incomp);
@@ -709,6 +722,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(BANCA_MS_EXTERNA);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
         //result.AddLevante(levante2);
@@ -749,6 +763,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(BANCA_DR_EXTERNA);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
         //result.AddLevante(levante2);
@@ -788,6 +803,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(BANCA_QL_EXTERNA);
         levante2.setTotalValor(incomp);
         result.AddLevante(levante);
         //result.AddLevante(levante2);
@@ -840,6 +856,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_DR_AND_CONC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -890,6 +907,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(COORIENTACAO_DR_AND_CONC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -940,6 +958,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_MS_AND_CONC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -992,23 +1011,11 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(COORIENTACAO_MS_AND_CONC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     //ok
     private void setOrientacaoDouAnd(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO");
@@ -1035,6 +1042,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_DR_AND);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -1065,6 +1073,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_MS_AND);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -1095,6 +1104,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_DR_CONC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -1125,6 +1135,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_MS_CONC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
@@ -1155,6 +1166,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante2.setTotalValor(incomp);
+        levante2.setValorItem(COORIENTACAO_DR_CONC);
         result.AddLevante(levante2);
         result.someTotal(incomp);
     }
@@ -1185,6 +1197,7 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante2.setTotalValor(incomp);
+        levante2.setValorItem(COORIENTACAO_MS_CONC);
         result.AddLevante(levante2);
         result.someTotal(incomp);
     }
@@ -1234,141 +1247,10 @@ public class AvaliadorDefault implements Avaliador {
             }
         }
         levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_IC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }
     
     
-    private void setOrientacaoEmAndamento(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
-        XPathExpression expr = xpath.compile("//ORIENTACOES-EM-ANDAMENTO/*");
-        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
-        Levantamento levante = new Levantamento();
-        levante.setTipoObra("Orientação em andamento de doutorado");// eng
-        Levantamento levante2 = new Levantamento();
-        levante2.setTipoObra("Orientação em andamento de mestrado");// eng
-        Levantamento levante3 = new Levantamento();
-        levante3.setTipoObra("Orientação em andamento de pósdoutorado");
-        Levantamento levante4 = new Levantamento();
-        levante4.setTipoObra("Orientação em andamento de aperfeicoamento e especialização");
-        Levantamento levante5 = new Levantamento();
-        levante5.setTipoObra("Orientação em andamento de graduação");
-        Obras obra;
-        float comp=0,comp1=0,comp2=0,comp3=0,comp4=0;
-        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
-            Node orientacao = orientacoesDoutoradoAndamento.item(i);
-            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
-            String tipo = orientacao.getNodeName();
-            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
-            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
-            obra = new Obras();
-            if (tipo.equalsIgnoreCase("ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO")) {
-                if (orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent().equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-                	obra.setNome("Orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                	if(ano <= ANO_TRIENIO)
-                		obra.setValido(false);
-                	else
-                		comp = comp+ORIENTACAO_DR_AND_CONC + ORIENTACAO_DR_AND;
-                	obra.setValor(ORIENTACAO_DR_AND_CONC + ORIENTACAO_DR_AND);
-                	levante.AddObra(obra);
-                } else {
-                	obra.setNome("Co-orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                	if(ano <= ANO_TRIENIO)
-                		obra.setValido(false);
-                	else
-                		comp = comp+COORIENTACAO_DR_AND_CONC;
-                	obra.setValor(COORIENTACAO_DR_AND_CONC);
-                	
-                	levante.AddObra(obra);
-            	}
-            	} else if (tipo.equalsIgnoreCase("ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO")) {
-                if (orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent().equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-                	obra.setNome("Orientação de Mestrado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                	if(ano <= ANO_TRIENIO)
-                		obra.setValido(false);
-                	else
-                		comp1 = comp1+ORIENTACAO_MS_AND + ORIENTACAO_MS_AND_CONC;
-                	obra.setValor(ORIENTACAO_MS_AND + ORIENTACAO_MS_AND_CONC);
-                	
-                	levante2.AddObra(obra);
-                } else {
-                	obra.setNome("Co-orientação de Mestrado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                	if(ano <= ANO_TRIENIO)
-                		obra.setValido(false);
-                	else
-                		comp1 = comp1+COORIENTACAO_MS_AND_CONC;
-                	obra.setValor(COORIENTACAO_MS_AND_CONC);
-                	levante2.AddObra(obra);
-                  }
-            } else if (tipo.equalsIgnoreCase("ORIENTACAO-EM-ANDAMENTO-DE-POS-DOUTORADO")) {
-//                if (orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent().equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-//                	obra.setNome("Orientação de Pós-Doc em Andamento (" + ano + ") " + titulo + "," + aluno);
-//                	if(ano <= ANO_TRIENIO)
-//                		obra.setValido(false);
-//                	else
-//                		comp2 = comp2+ORIENTACAO_PDR;
-//                	obra.setValor(ORIENTACAO_PDR);
-//                	
-//                	levante3.AddObra(obra);
-//            	} else {
-//                	obra.setNome("Co-orientação de Pós-Doc em Andamento (" + ano + ") " + titulo + "," + aluno);
-//                	if(ano <= ANO_TRIENIO)
-//                		obra.setValido(false);
-//                	else
-//                		comp2 = comp2+COORIENTACAO_PDR;
-//                	obra.setValor(COORIENTACAO_PDR);
-//                	levante3.AddObra(obra);
-//            	}
-            } else if (tipo.equalsIgnoreCase("ORIENTACAO-EM-ANDAMENTO-DE-APERFEICOAMENTO-ESPECIALIZACAO")) {
-//                if (orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent().equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-//                	obra.setNome("Orientação de Aperf.Especialização em Andamento (" + ano + ") " + titulo + "," + aluno);
-//                	if(ano <= ANO_TRIENIO)
-//                		obra.setValido(false);
-//                	else
-//                		comp3 = comp3+ORIENTACAO_AE;
-//                	obra.setValor(ORIENTACAO_AE);
-//                	levante4.AddObra(obra);
-//                } else {
-//                	obra.setNome("Co-orientação de Aperf.Especialização em Andamento (" + ano + ") " + titulo + "," + aluno);
-//                	if(ano <= ANO_TRIENIO)
-//                		obra.setValido(false);
-//                	else
-//                		comp3 = comp3+ORIENTACAO_AE;
-//                	obra.setValor(ORIENTACAO_AE);
-//                	comp3 = comp3+ORIENTACAO_AE;
-//                	levante4.AddObra(obra);
-//                }
-            } else if (tipo.equalsIgnoreCase("ORIENTACAO-EM-ANDAMENTO-DE-GRADUACAO")) {
-//                if (orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent().equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-//                	obra.setNome("Orientação de Trab.Graduação em Andamento (" + ano + ") " + titulo + "," + aluno);
-//                	if(ano <= ANO_TRIENIO)
-//                		obra.setValido(false);
-//                	else
-//                		comp4 = comp4+ORIENTACAO_GR;
-//                	obra.setValor(ORIENTACAO_GR);
-//                	
-//                	levante5.AddObra(obra);
-//                } else {
-//                	obra.setNome("Co-orientação de Trab.Graduação em Andamento (" + ano + ") " + titulo + "," + aluno);
-//                	if(ano <= ANO_TRIENIO)
-//                		obra.setValido(false);
-//                	else
-//                		comp4 = comp4+ORIENTACAO_GR;
-//                	obra.setValor(ORIENTACAO_GR);
-//                	levante5.AddObra(obra);
-//                }
-            }
-        }
-        levante.setTotalValor(comp);
-        levante2.setTotalValor(comp1);
-        levante3.setTotalValor(comp2);
-        levante4.setTotalValor(comp3);
-        levante5.setTotalValor(comp4);
-        result.AddLevante(levante);
-        result.AddLevante(levante2);
-//        result.AddLevante(levante3);
-//        result.AddLevante(levante4);
-//        result.AddLevante(levante5);
-        result.someTotal(comp+comp1+comp2+comp3+comp4);
-    }
-  
 }

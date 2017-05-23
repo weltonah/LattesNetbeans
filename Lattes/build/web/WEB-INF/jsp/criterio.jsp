@@ -132,11 +132,11 @@ body {
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+				Artigos completos em periódico indexados *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+				Artigos completos aceitos para publicação *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -187,6 +187,11 @@ body {
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Orientação Iniciação Científica andamento/concluída 
 			</div>
+                        <div>
+                            <br><br>
+			* O sistema não contabiliza este item pois ainda não analisa o fator de
+                        impacto
+			</div>
 		</div>
 		
 		<div id="eng" class="formulario" style="display:none;">
@@ -196,11 +201,11 @@ body {
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+				Artigos completos em periódico indexados *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+				Artigos completos aceitos para publicação *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -273,6 +278,10 @@ body {
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Orientação Iniciação Científica andamento/concluída 
+			</div>
+                        <div>
+                            <br><br>
+                            * O sistema não contabiliza este item pois ainda não analisa o JCR
 			</div>
 		</div>
 				
@@ -358,11 +367,11 @@ body {
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+				Artigos completos em periódico indexados *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+				Artigos completos aceitos para publicação *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -419,6 +428,10 @@ body {
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Orientação Iniciação Científica andamento/concluída 
+			</div>
+                        <div>
+                            <br><br>
+                            * O sistema não contabiliza este item pois ainda não analisa o Qualis 
 			</div>
 		</div>
 		

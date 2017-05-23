@@ -109,7 +109,6 @@ public class Criterios {/*
 		this.oriMestConc = oriMestConc;
 		this.coriMestAndConc = coriMestAndConc;
 		this.coriMestConc = coriMestConc;
-                System.out.println(coriMestConc);
 		this.oriIcAndConc = oriIcAndConc;
 		this.proArtColNac = proArtColNac;
 		this.proArtIndNac = proArtIndNac;
