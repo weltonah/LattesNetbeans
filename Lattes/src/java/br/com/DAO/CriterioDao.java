@@ -124,18 +124,18 @@ public class CriterioDao {
 			// tara 9
 			float oriMestAnd=  (float) 1.5;
 			float oriMestConc=  5;
-			float coriMestAndConc= 0 ;
-			float coriMestConc=  5;
+			float coriMestAndConc= -1 ;
+			float coriMestConc=  1;
 			// tara 24
 			float oriIcAndConc=  3;
-			float proArtColNac=  0;
+			float proArtColNac=  -1;
 			float proArtIndNac=  0;
 			float proArtColInt=  0;
 			float proArtIndInt=  0;
 			float doutor=  0;
 			// tara 12
 			float oriTfc = (float) 0.5;
-			
+			System.out.println(coriMestConc);
 			crit = new Criterios(aux,dedicacaoExclusiva,artCompPerioInd,artCompAceitoPublic
 					,livro,capLivro,orgLivro,trabEvento,trabEventoInter,trabEventoNaci,
 					depPatenteNac,depPatenteInt,bancMestr,bancDout,bancQualDout,oriDoutAndConc,

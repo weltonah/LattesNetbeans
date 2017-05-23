@@ -43,10 +43,12 @@ public class AvaliadorDefault implements Avaliador {
     private float ORIENTACAO_DR_CONC = 0;
     private float ORIENTACAO_DR_AND_CONC = 0;
     private float COORIENTACAO_DR_AND_CONC = 5;
+    private float COORIENTACAO_DR_CONC = 0;
     private float ORIENTACAO_MS_AND = 10;
     private float ORIENTACAO_MS_CONC = 10;
     private float ORIENTACAO_MS_AND_CONC = 10;
     private float COORIENTACAO_MS_AND_CONC = 3;
+    private float COORIENTACAO_MS_CONC = 0;
     private float ORIENTACAO_IC = 3;
     private float ORIENTACAO_OUTRAS = 0;
     private float COORIENTACAO_GR = 0;
@@ -77,12 +79,14 @@ public class AvaliadorDefault implements Avaliador {
          BANCA_DR_EXTERNA = crit.getBancDout();
          BANCA_QL_EXTERNA = crit.getBancQualDout();
          ORIENTACAO_DR_AND = crit.getOriDoutAnd();
-         ORIENTACAO_DR_CONC = crit.getCoriDoutConc();
+         ORIENTACAO_DR_CONC = crit.getOriDoutConc();
          ORIENTACAO_DR_AND_CONC = crit.getOriDoutAndConc();
          COORIENTACAO_DR_AND_CONC = crit.getCoriDoutAndConc();
+         COORIENTACAO_DR_CONC = crit.getCoriDoutConc();
          ORIENTACAO_MS_AND = crit.getOriMestAnd();
          ORIENTACAO_MS_CONC = crit.getOriMestConc();
          ORIENTACAO_MS_AND_CONC = crit.getOriMestAndConc();
+         COORIENTACAO_MS_CONC = crit.getCoriMestConc();
          COORIENTACAO_MS_AND_CONC = crit.getCoriMestAndConc();
          ORIENTACAO_IC = crit.getOriIcAndConc();
          ORIENTACAO_OUTRAS = 0;
@@ -105,18 +109,22 @@ public class AvaliadorDefault implements Avaliador {
             avaliaVinculoDedicacaoExclusiva(xpath, result, document);
             avaliaArtigosPublicados(xpath, result, document);
             avaliaArtigosAceitos(xpath, result, document);
-            avaliaTrabalhoEmEventosGeral(xpath, result, document);
+            
             avaliaLivrosPublicados(xpath, result, document);
-            avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
+            avaliaLivrosOrganizado(xpath, result, document);
+            
+            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
-            setOrientacaoEmAndamento(xpath, result, document);
+            setOrientacaoDouAndConclu(xpath, result, document);
+            setCorientacaoDouAndConclu(xpath, result, document);
+            setOrientacaoMesAndConclu(xpath, result, document);
+            setCorientacaoMesAndConclu(xpath, result, document);
+            
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("biologica")){
@@ -138,9 +146,11 @@ public class AvaliadorDefault implements Avaliador {
             setBancaDoutorado(xpath, result, document);
             setBancaMestrado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
-            setOrientacaoEmAndamento(xpath, result, document);
+            setOrientacaoDouAndConclu(xpath, result, document);
+            setCorientacaoDouAndConclu(xpath, result, document);
+            setOrientacaoMesAndConclu(xpath, result, document);
+            setCorientacaoMesAndConclu(xpath, result, document);
+            
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("eng")){
@@ -169,13 +179,19 @@ public class AvaliadorDefault implements Avaliador {
              setBancaDoutorado(xpath, result, document);
             //maximo 3
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
+            
+            setOrientacaoDouAnd(xpath, result, document);
+            setOrientacaoMesAnd(xpath, result, document);
+                    
+            setOrientacaoDoutoradoCon(xpath, result, document);
+            setOrientacaoMestradoCon(xpath, result, document);
+            
+            setCorientacaoDoutoradoCon(xpath, result, document);
+            setCorientacaoMestradoCon(xpath, result, document);
             
 //            maximo 3 Orientação de Doutorado em Andamento
 //            maximo 9 Orientação de Mestrado em Andamento
 //            maximo 24 Orientação Iniciação Científica andamento/concluída 
-            setOrientacaoEmAndamento(xpath, result, document);
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("saude")){
@@ -194,9 +210,11 @@ public class AvaliadorDefault implements Avaliador {
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
-            setOrientacaoEmAndamento(xpath, result, document);
+            setOrientacaoDouAndConclu(xpath, result, document);
+            setCorientacaoDouAndConclu(xpath, result, document);
+            setOrientacaoMesAndConclu(xpath, result, document);
+            setCorientacaoMesAndConclu(xpath, result, document);
+            
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("social")){
@@ -216,17 +234,19 @@ public class AvaliadorDefault implements Avaliador {
 //            Artigos aceitos completos em periódico  C (qualis área)          
 //            avaliaArtigosPublicados(xpath, result, document);
 //            avaliaArtigosAceitos(xpath, result, document);
-            avaliaTrabalhoEmEventosGeral(xpath, result, document);
+            
             avaliaLivrosPublicados(xpath, result, document);
-            avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
+            avaliaLivrosOrganizado(xpath, result, document);
+            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
-            setOrientacaoEmAndamento(xpath, result, document);
+            setOrientacaoDouAndConclu(xpath, result, document);
+            setCorientacaoDouAndConclu(xpath, result, document);
+            setOrientacaoMesAndConclu(xpath, result, document);
+            setCorientacaoMesAndConclu(xpath, result, document);
             serOrientacaoIC(xpath, result, document);
             
         }
@@ -238,17 +258,18 @@ public class AvaliadorDefault implements Avaliador {
             avaliaVinculoDedicacaoExclusiva(xpath, result, document);
             avaliaArtigosPublicados(xpath, result, document);
             avaliaArtigosAceitos(xpath, result, document);
-            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             avaliaLivrosPublicados(xpath, result, document);
-            avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
+            avaliaLivrosOrganizado(xpath, result, document);
+            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
-            setOrientacaoEmAndamento(xpath, result, document);
+            setOrientacaoDouAndConclu(xpath, result, document);
+            setCorientacaoDouAndConclu(xpath, result, document);
+            setOrientacaoMesAndConclu(xpath, result, document);
+            setCorientacaoMesAndConclu(xpath, result, document);
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("letras")){
@@ -259,17 +280,18 @@ public class AvaliadorDefault implements Avaliador {
             avaliaVinculoDedicacaoExclusiva(xpath, result, document);
             avaliaArtigosPublicados(xpath, result, document);
             avaliaArtigosAceitos(xpath, result, document);
-            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             avaliaLivrosPublicados(xpath, result, document);
-            avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
+            avaliaLivrosOrganizado(xpath, result, document);
+            avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             setBancaMestrado(xpath, result, document);
             setBancaDoutorado(xpath, result, document);
             setBancaQualificacao(xpath, result, document);
-            setOrientacaoMestradoConcluida(xpath, result, document);
-            setOrientacaoDoutoradoConcluida(xpath, result, document);
-            setOrientacaoEmAndamento(xpath, result, document);
+            setOrientacaoDouAndConclu(xpath, result, document);
+            setCorientacaoDouAndConclu(xpath, result, document);
+            setOrientacaoMesAndConclu(xpath, result, document);
+            setCorientacaoMesAndConclu(xpath, result, document);
             serOrientacaoIC(xpath, result, document);
         }
         /*
@@ -287,8 +309,8 @@ public class AvaliadorDefault implements Avaliador {
         setBancaMestrado(xpath, result, document);
         setBancaDoutorado(xpath, result, document);
         setBancaQualificacao(xpath, result, document);
-        setOrientacaoMestradoConcluida(xpath, result, document);
-        setOrientacaoDoutoradoConcluida(xpath, result, document);
+        setOrientacaoMestradoCon(xpath, result, document);
+        setOrientacaoDoutoradoCon(xpath, result, document);
         setOrientacaoEmAndamento(xpath, result, document);*/
         return result;
     }
@@ -772,15 +794,34 @@ public class AvaliadorDefault implements Avaliador {
         result.someTotal(comp+incomp);
     }
 
-    private void setOrientacaoDoutoradoConcluida(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
-        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-DOUTORADO");
-        NodeList orientacoesDoutoradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+    //ok
+    private void setOrientacaoDouAndConclu(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Orientação de Doutorado em andamento/concluída");
-        Levantamento levante2 = new Levantamento();
-        levante2.setTipoObra("Co-orientação de Doutorado em andamento/concluída");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0;
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+                obra.setNome("Orientação de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
+                if(ano <= ANO_TRIENIO)
+                        obra.setValido(false);
+                else
+                        comp = comp+ORIENTACAO_DR_AND_CONC;
+                obra.setValor(ORIENTACAO_DR_AND_CONC);
+                levante.AddObra(obra);
+            }
+        }
+        
+        expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-DOUTORADO");
+        NodeList orientacoesDoutoradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         for (int i = 0; i < orientacoesDoutoradoConcluida.getLength(); i++) {
             Node orientacao = orientacoesDoutoradoConcluida.item(i);
             String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
@@ -789,39 +830,98 @@ public class AvaliadorDefault implements Avaliador {
             Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-            	obra.setNome("Tese ("+ ano + ") " + titulo + ", " + aluno);
+            	obra.setNome("Orientação de Doutorado concluída ("+ ano + ") " + titulo + ", " + aluno);
             	if(ano <= ANO_TRIENIO)
             		obra.setValido(false);
             	else
-            		comp = comp+ORIENTACAO_DR_AND_CONC + ORIENTACAO_DR_CONC;
-            	obra.setValor(ORIENTACAO_DR_AND_CONC + ORIENTACAO_DR_CONC);
+            		comp = comp+ORIENTACAO_DR_AND_CONC;
+            	obra.setValor(ORIENTACAO_DR_AND_CONC);
             	levante.AddObra(obra);
-            } else {
-            	obra.setNome("Tese ("+ ano + ") " + titulo + ", " + aluno);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		incomp = incomp+COORIENTACAO_DR_AND_CONC;
-            	obra.setValor(COORIENTACAO_DR_AND_CONC);
-            	levante2.AddObra(obra);
             }
         }
         levante.setTotalValor(comp);
-        levante2.setTotalValor(incomp);
         result.AddLevante(levante);
-        result.AddLevante(levante2);
-        result.someTotal(comp+incomp);
+        result.someTotal(comp);
     }
-
-    private void setOrientacaoMestradoConcluida(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
-        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-MESTRADO");
-        NodeList orientacoesMestradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+    
+    //ok
+    private void setCorientacaoDouAndConclu(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-DOUTORADO");
+        NodeList orientacoesDoutoradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Co-orientação de Doutorado andamento/concluída");
+        Obras obra;
+        float comp = 0;
+        for (int i = 0; i < orientacoesDoutoradoConcluida.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoConcluida.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTADO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (!tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+            	obra.setNome("Co-orientação de Doutorado concluída ("+ ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		comp = comp+COORIENTACAO_DR_AND_CONC;
+            	obra.setValor(COORIENTACAO_DR_AND_CONC);
+            	levante.AddObra(obra);
+            }
+        }
+        
+        expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (!tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+                obra.setNome("Co-orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
+                if(ano <= ANO_TRIENIO)
+                        obra.setValido(false);
+                else
+                        comp = comp+COORIENTACAO_DR_AND_CONC;
+                obra.setValor(COORIENTACAO_DR_AND_CONC);
+                levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+    
+    //ok
+    private void setOrientacaoMesAndConclu(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Orientação de Mestrado em andamento/concluída");
-        Levantamento levante2 = new Levantamento();
-        levante2.setTipoObra("Co-orientação de Mestrado em andamento/concluída");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0;
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+                obra.setNome("Orientação de Mestrado em Andamento (" + ano + ") " + titulo + "," + aluno);
+                if(ano <= ANO_TRIENIO)
+                        obra.setValido(false);
+                else
+                        comp = comp+ORIENTACAO_MS_AND_CONC;
+                obra.setValor(ORIENTACAO_MS_AND_CONC);
+                levante.AddObra(obra);
+            }
+        }
+        
+        expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-MESTRADO");
+        NodeList orientacoesMestradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         for (int i = 0; i < orientacoesMestradoConcluida.getLength(); i++) {
             Node orientacao = orientacoesMestradoConcluida.item(i);
             String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
@@ -830,29 +930,265 @@ public class AvaliadorDefault implements Avaliador {
             Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
-            	obra.setNome("Dissertação ("+ ano + ") " + titulo + ", " + aluno);
+            	obra.setNome("Orientação de Mestrado em concluída ("+ ano + ") " + titulo + ", " + aluno);
             	if(ano <= ANO_TRIENIO)
             		obra.setValido(false);
             	else
-            		comp = comp+ORIENTACAO_MS_AND_CONC + ORIENTACAO_MS_CONC;
-            	obra.setValor(ORIENTACAO_MS_AND_CONC + ORIENTACAO_MS_CONC);
+            		comp = comp+ORIENTACAO_MS_AND_CONC;
+            	obra.setValor(ORIENTACAO_MS_AND_CONC);
             	levante.AddObra(obra);
-            } else {
-            	obra.setNome("Dissertação ("+ ano + ") " + titulo + ", " + aluno);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		incomp = incomp+COORIENTACAO_MS_AND_CONC;
-            	obra.setValor(COORIENTACAO_MS_AND_CONC);
-            	levante2.AddObra(obra);
             }
         }
         levante.setTotalValor(comp);
-        levante2.setTotalValor(incomp);
         result.AddLevante(levante);
-        result.AddLevante(levante2);
-        result.someTotal(comp+incomp);
+        result.someTotal(comp);
     }
+    
+    
+    
+    
+    private void setCorientacaoMesAndConclu(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-MESTRADO");
+        NodeList orientacoesMestradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Co-orientação de Mestrado andamento/concluída");
+        Obras obra;
+        float comp = 0;
+        for (int i = 0; i < orientacoesMestradoConcluida.getLength(); i++) {
+            Node orientacao = orientacoesMestradoConcluida.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTADO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (!tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+            	obra.setNome("Co-orientação de Mestrado concluída ("+ ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		comp = comp+COORIENTACAO_MS_AND_CONC;
+            	obra.setValor(COORIENTACAO_MS_AND_CONC);
+            	levante.AddObra(obra);
+            }
+        }
+        
+        expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (!tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+                obra.setNome("Co-orientação de Mestrado em Andamento (" + ano + ") " + titulo + "," + aluno);
+                if(ano <= ANO_TRIENIO)
+                        obra.setValido(false);
+                else
+                        comp = comp+COORIENTACAO_MS_AND_CONC;
+                obra.setValor(COORIENTACAO_MS_AND_CONC);
+                levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //ok
+    private void setOrientacaoDouAnd(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Orientação de Doutorado em andamento");
+        Obras obra;
+        float comp=0;
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+                obra.setNome("Orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
+                if(ano <= ANO_TRIENIO)
+                        obra.setValido(false);
+                else
+                        comp = comp+ORIENTACAO_DR_AND;
+                obra.setValor(ORIENTACAO_DR_AND);
+                levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+    
+    //ok
+    private void setOrientacaoMesAnd(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Orientação de Mestrado em andamento");
+        Obras obra;
+        float comp=0;
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTANDO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+                obra.setNome("Orientação de Mestrado em Andamento (" + ano + ") " + titulo + "," + aluno);
+                if(ano <= ANO_TRIENIO)
+                        obra.setValido(false);
+                else
+                        comp = comp+ORIENTACAO_MS_AND;
+                obra.setValor(ORIENTACAO_MS_AND);
+                levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+    
+    //ok
+    private void setOrientacaoDoutoradoCon(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-DOUTORADO");
+        NodeList orientacoesDoutoradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Orientação de Doutorado concluída");
+        Obras obra;
+        float comp=0;
+        for (int i = 0; i < orientacoesDoutoradoConcluida.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoConcluida.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTADO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+            	obra.setNome("Orientação de Doutorado concluída ("+ ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		comp = comp+ORIENTACAO_DR_CONC;
+            	obra.setValor(ORIENTACAO_DR_CONC);
+            	levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+
+    //ok
+    private void setOrientacaoMestradoCon(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-MESTRADO");
+        NodeList orientacoesMestradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Orientação de Mestrado em concluída");
+        Obras obra;
+        float comp=0;
+        for (int i = 0; i < orientacoesMestradoConcluida.getLength(); i++) {
+            Node orientacao = orientacoesMestradoConcluida.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTADO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+            	obra.setNome("Orientação de Mestrado em concluída ("+ ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		comp = comp+ORIENTACAO_MS_CONC;
+            	obra.setValor(ORIENTACAO_MS_CONC);
+            	levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+    
+    //ok
+    private void setCorientacaoDoutoradoCon(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-DOUTORADO");
+        NodeList orientacoesDoutoradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante2 = new Levantamento();
+        levante2.setTipoObra("Co-orientação de Doutorado concluída");
+        Obras obra;
+        float incomp = 0;
+        for (int i = 0; i < orientacoesDoutoradoConcluida.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoConcluida.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTADO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (!tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+            	obra.setNome("Co-orientação de Doutorado concluída ("+ ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		incomp = incomp+COORIENTACAO_DR_CONC;
+            	obra.setValor(COORIENTACAO_DR_CONC);
+            	levante2.AddObra(obra);
+            }
+        }
+        levante2.setTotalValor(incomp);
+        result.AddLevante(levante2);
+        result.someTotal(incomp);
+    }
+    
+    //ok
+    private void setCorientacaoMestradoCon(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-MESTRADO");
+        NodeList orientacoesMestradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante2 = new Levantamento();
+        levante2.setTipoObra("Co-orientação de Mestrado concluída");
+        Obras obra;
+        float incomp = 0;
+        for (int i = 0; i < orientacoesMestradoConcluida.getLength(); i++) {
+            Node orientacao = orientacoesMestradoConcluida.item(i);
+            String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
+            String tipo = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("TIPO-DE-ORIENTACAO").getTextContent();
+            String aluno = orientacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-DO-ORIENTADO").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if (!tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
+            	obra.setNome("Co-orientação de Mestrado concluída ("+ ano + ") " + titulo + ", " + aluno);
+            	if(ano <= ANO_TRIENIO)
+            		obra.setValido(false);
+            	else
+            		incomp = incomp+COORIENTACAO_MS_CONC;
+            	obra.setValor(COORIENTACAO_MS_CONC);
+            	levante2.AddObra(obra);
+            }
+        }
+        levante2.setTotalValor(incomp);
+        result.AddLevante(levante2);
+        result.someTotal(incomp);
+    }
+    
     
     private void serOrientacaoIC(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//DADOS-BASICOS-DE-OUTRAS-ORIENTACOES-CONCLUIDAS");
@@ -877,9 +1213,9 @@ public class AvaliadorDefault implements Avaliador {
             	levante.AddObra(obra);
             }
         }
+        
         expr = xpath.compile("//ORIENTACAO-EM-ANDAMENTO-DE-INICIACAO-CIENTIFICA");
         orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
-        System.out.println(orientacoesDoutoradoAndamento.getLength());
         for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
             Node orientacao = orientacoesDoutoradoAndamento.item(i);
             String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
@@ -895,9 +1231,6 @@ public class AvaliadorDefault implements Avaliador {
             		comp = comp+ORIENTACAO_IC;
             	obra.setValor(ORIENTACAO_IC);
             	levante.AddObra(obra);
-                System.out.println(titulo);
-                System.out.println(natureza);
-                System.out.println(ano);
             }
         }
         levante.setTotalValor(comp);
