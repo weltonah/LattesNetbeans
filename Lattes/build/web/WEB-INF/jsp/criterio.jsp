@@ -226,6 +226,10 @@ body {
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Trabalhos Completos em Eventos Nacionais
 			</div>
+                        <div>
+				(Eventos Internacionais + Eventos Nacionais) possui limite máximo de 9
+			</div>
+                    
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Depósitos de patentes nacionais
@@ -236,31 +240,31 @@ body {
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+				Banca de Mestrado externa ao programa (limite máximo de 6)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+				Banca de Doutorado externa ao programa (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+				Banca de Qualificação de Doutorado externa ao programa (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em Andamento
+				Orientação de Doutorado em Andamento (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em Andamento
+				Orientação de Mestrado em Andamento (limite máximo de 9)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado Concluída 
+				Orientação de Doutorado Concluída  
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado Concluída
+				Orientação de Mestrado Concluída 
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -272,11 +276,11 @@ body {
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Orientação TFC Concluída
+				Orientação TFC Concluída (limite máximo de 12)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+				Orientação Iniciação Científica andamento/concluída  (limite máximo de 24)
 			</div>
                         <div>
                             <br><br>

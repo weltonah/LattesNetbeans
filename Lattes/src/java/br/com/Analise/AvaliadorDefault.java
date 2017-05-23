@@ -18,13 +18,10 @@ import br.com.Modelo.Obras;
 import br.com.Modelo.Pesquisador;
 import br.com.Modelo.Resultado;
 
-/**
- *
- * @author igor
- */
+
 public class AvaliadorDefault implements Avaliador {
 
-    public static final int ANO_TRIENIO = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).getYear() - 4;
+    public static final int ANO_TRIENIO = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).getYear() -4;
     private float DEDICACAO_EXCLUSIVA = 10;
     private float ARTIGO_COMPLETO_INDEXADO_PUBLICADO = 15;
     private float ARTIGO_COMPLETO_ACEITO = 8;
@@ -34,29 +31,32 @@ public class AvaliadorDefault implements Avaliador {
     private float TRABALHO_COMPLETO_EVENTO = 3;
     private float TRABALHO_COMPLETO_EVENTO_NAC = 4;
     private float TRABALHO_COMPLETO_EVENTO_INTE = 6;
+    private float MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE = -1;
     private float PATENTE_NACIONAL = 10;
     private float PATENTE_INTERNACIONAL = 15;
     private float BANCA_MS_EXTERNA = 5;
+    private float MAX_BANCA_MS_EXTERNA = -1;
     private float BANCA_DR_EXTERNA = 7;
+    private float MAX_BANCA_DR_EXTERNA = -1;
     private float BANCA_QL_EXTERNA = 7;
+    private float MAX_BANCA_QL_EXTERNA = -1;
     private float ORIENTACAO_DR_AND = 0;
+    private float MAX_ORIENTACAO_DR_AND = -1;
     private float ORIENTACAO_DR_CONC = 0;
     private float ORIENTACAO_DR_AND_CONC = 0;
     private float COORIENTACAO_DR_AND_CONC = 5;
     private float COORIENTACAO_DR_CONC = 0;
     private float ORIENTACAO_MS_AND = 10;
+    private float MAX_ORIENTACAO_MS_AND = -1;
     private float ORIENTACAO_MS_CONC = 10;
     private float ORIENTACAO_MS_AND_CONC = 10;
     private float COORIENTACAO_MS_AND_CONC = 3;
     private float COORIENTACAO_MS_CONC = 0;
+    private float ORIENTACAO_TFC = 0;
+    private float MAX_ORIENTACAO_TFC = -1;
     private float ORIENTACAO_IC = 3;
-    private float ORIENTACAO_OUTRAS = 0;
-    private float COORIENTACAO_GR = 0;
-    private float ORIENTACAO_GR = 0;
-    private float COORIENTACAO_AE = 0;
-    private float ORIENTACAO_AE = 0;
-    private float COORIENTACAO_PDR = 0;
-    private float ORIENTACAO_PDR = 0;
+    private float MAX_ORIENTACAO_IC = -1;
+    
     private float DOUTOR = 0;
 
     public void avaliar() {
@@ -89,20 +89,14 @@ public class AvaliadorDefault implements Avaliador {
          COORIENTACAO_MS_CONC = crit.getCoriMestConc();
          COORIENTACAO_MS_AND_CONC = crit.getCoriMestAndConc();
          ORIENTACAO_IC = crit.getOriIcAndConc();
-         ORIENTACAO_OUTRAS = 0;
-         COORIENTACAO_GR = 0;
-         ORIENTACAO_GR = 0;
-         COORIENTACAO_AE = 0;
-         ORIENTACAO_AE = 0;
-         COORIENTACAO_PDR = 0;
-         ORIENTACAO_PDR = 0;
+         
+        
          DOUTOR = crit.getDoutor();
         XPathFactory xPathfactory = XPathFactory.newInstance();
         XPath xpath = xPathfactory.newXPath();
         Resultado result = new Resultado();
         if(crit.getArea().equals("exata")){
-            
-        	setNomeCompleto(xpath, result, document);
+            setNomeCompleto(xpath, result, document);
             setAtualizacao(xpath, document, result);
             setLattes(xpath, result, document);
             setResumoCV(xpath, result, document);
@@ -154,6 +148,14 @@ public class AvaliadorDefault implements Avaliador {
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("eng")){
+            MAX_ORIENTACAO_IC = 24;
+            MAX_ORIENTACAO_TFC =12;
+            MAX_ORIENTACAO_MS_AND = 9;
+            MAX_ORIENTACAO_DR_AND = 3;
+            MAX_BANCA_QL_EXTERNA = 3;
+            MAX_BANCA_DR_EXTERNA = 3;
+            MAX_BANCA_MS_EXTERNA = 6;
+            MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE = 9;
             setNomeCompleto(xpath, result, document);
             setAtualizacao(xpath, document, result);
             setLattes(xpath, result, document);
@@ -170,7 +172,6 @@ public class AvaliadorDefault implements Avaliador {
             avaliaLivrosOrganizado(xpath, result, document);
             // maximo 9 de inter+nacional
             avaliaTrabalhoEmEventosNacInte(xpath, result, document);
-            
             
             setPatentes(xpath, result, document);
             // maximo 6
@@ -486,7 +487,6 @@ public class AvaliadorDefault implements Avaliador {
     private void avaliaTrabalhoEmEventosGeral(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//TRABALHO-EM-EVENTOS");
         NodeList trabalhos = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
-        Integer totalEventos = 0;
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Trabalhos completos em eventos");
         Levantamento levante2 = new Levantamento();
@@ -520,13 +520,38 @@ public class AvaliadorDefault implements Avaliador {
     private void avaliaTrabalhoEmEventosNacInte(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//TRABALHO-EM-EVENTOS");
         NodeList trabalhos = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
-        Integer totalEventos = 0;
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Trabalhos completos em eventos nacionais");
         Levantamento levante2 = new Levantamento();
         levante2.setTipoObra("Trabalhos completos em eventos internacionais");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0,incomp = 0, aux=0;
+        for (int i = 0; i < trabalhos.getLength(); i++) {
+            Node trabalhoNode = trabalhos.item(i);
+            String titulo = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
+            Integer ano = Integer.valueOf(trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("ANO-DO-TRABALHO").getTextContent());
+            String nat = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("NATUREZA").getTextContent();
+            String log = "[Trab. Eventos] (" + ano + ") " + nat + ": " + titulo;
+            obra = new Obras();
+            if (nat.equalsIgnoreCase("COMPLETO")) {
+                String pais = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("PAIS-DO-EVENTO").getTextContent();
+                if(!pais.equalsIgnoreCase("Brasil")){
+                    obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
+                    if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE))
+                            obra.setValido(false);
+                    else{
+                        comp = comp+TRABALHO_COMPLETO_EVENTO_INTE;
+                        aux++;
+                    }
+                    obra.setValor(TRABALHO_COMPLETO_EVENTO_INTE);
+                    levante2.AddObra(obra);
+                }
+                System.out.println(aux +" >=" + MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE);
+                
+            }
+        }
+        expr = xpath.compile("//TRABALHO-EM-EVENTOS");
+        trabalhos = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         for (int i = 0; i < trabalhos.getLength(); i++) {
             Node trabalhoNode = trabalhos.item(i);
             String titulo = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
@@ -538,24 +563,19 @@ public class AvaliadorDefault implements Avaliador {
                 String pais = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("PAIS-DO-EVENTO").getTextContent();
                 if(pais.equalsIgnoreCase("Brasil")){
                     obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
-                    if(ano <= ANO_TRIENIO)
+                    if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE))
                             obra.setValido(false);
-                    else
+                    else{
                             comp = comp+TRABALHO_COMPLETO_EVENTO_NAC;
+                            aux++;
+                    }
                     obra.setValor(TRABALHO_COMPLETO_EVENTO_NAC);
                     levante.AddObra(obra);
                 }
-                else{
-                    obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
-                    if(ano <= ANO_TRIENIO)
-                            obra.setValido(false);
-                    else
-                            comp = comp+TRABALHO_COMPLETO_EVENTO_INTE;
-                    obra.setValor(TRABALHO_COMPLETO_EVENTO_INTE);
-                    levante2.AddObra(obra);
-                }
+                System.out.println(aux +" >=" + MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE);
             }
         }
+        
         levante.setTotalValor(comp);
         levante.setValorItem(TRABALHO_COMPLETO_EVENTO_NAC);
         levante2.setTotalValor(incomp);
@@ -695,7 +715,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante2 = new Levantamento();
         levante2.setTipoObra("Banca de Mestrado interna ao programa");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0,incomp = 0, aux=0;
         for (int i = 0; i < bancasDeMestrado.getLength(); i++) {
             Node bancaDeMestrado = bancasDeMestrado.item(i);
             String titulo = bancaDeMestrado.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
@@ -704,10 +724,12 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (!instituticao.equalsIgnoreCase("Universidade Federal de Juiz de Fora")) {
             	obra.setNome("Banca de Mestrado: (" + ano + ") " + titulo + " - " + instituticao);
-            	if(ano <= ANO_TRIENIO)
+            	if(ano <= ANO_TRIENIO || (aux >=MAX_BANCA_MS_EXTERNA && MAX_BANCA_MS_EXTERNA>0))
             		obra.setValido(false);
-            	else
+                else{
             		comp = comp+BANCA_MS_EXTERNA;
+                        aux++;
+                }
             	obra.setValor(BANCA_MS_EXTERNA);
             	levante.AddObra(obra);
             } else {
@@ -736,7 +758,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante2 = new Levantamento();
         levante2.setTipoObra("Banca de Doutorado interna ao programa");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0,incomp = 0,aux=0;
         for (int i = 0; i < bancasDeDoutorado.getLength(); i++) {
             Node bancaDeDoutorado = bancasDeDoutorado.item(i);
             String titulo = bancaDeDoutorado.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
@@ -745,10 +767,12 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (!instituicao.equalsIgnoreCase("Universidade Federal de Juiz de Fora")) {
             	obra.setNome("Banca de Doutorado: " + "(" + ano + ")" + titulo + " - " + instituicao);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp = comp+BANCA_DR_EXTERNA;
+            	if(ano <= ANO_TRIENIO|| (aux >=MAX_BANCA_DR_EXTERNA && MAX_BANCA_DR_EXTERNA>0))
+                    obra.setValido(false);
+                else{
+                    comp = comp+BANCA_DR_EXTERNA;
+                    aux++;
+                }
             	obra.setValor(BANCA_DR_EXTERNA);
             	
             	levante.AddObra(obra);
@@ -777,7 +801,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante2 = new Levantamento();
         levante2.setTipoObra("Banca de Qualificação de Doutorado interna ao programa");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0,incomp = 0,aux=0;
         for (int i = 0; i < bancasDeQualificacao.getLength(); i++) {
             Node bancaDeQualificacao = bancasDeQualificacao.item(i);
             String titulo = bancaDeQualificacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
@@ -786,13 +810,16 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (!tipo.equalsIgnoreCase("Universidade Federal de Juiz de Fora")) {
             	obra.setNome( "Banca de Qualificação (" + ano + ") " + titulo + " - " + tipo);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp = comp+BANCA_QL_EXTERNA;
-            	obra.setValor(BANCA_QL_EXTERNA);
-            	levante.AddObra(obra);
-        	} else {
+            	if(ano <= ANO_TRIENIO || (aux >=MAX_BANCA_QL_EXTERNA && MAX_BANCA_QL_EXTERNA>0))
+                    obra.setValido(false);
+                else{
+                    comp = comp+BANCA_QL_EXTERNA;
+                    aux++;
+                }
+                    obra.setValor(BANCA_QL_EXTERNA);
+                    levante.AddObra(obra);
+        	}
+            else {
             	obra.setNome("Banca de Qualificação (" + ano + ") " + titulo + " - " + tipo);
             	if(ano <= ANO_TRIENIO)
             		obra.setValido(false);
@@ -961,10 +988,8 @@ public class AvaliadorDefault implements Avaliador {
         result.AddLevante(levante);
         result.someTotal(comp);
     }
-    
-    
-    
-    
+
+    //ok
     private void setCorientacaoMesAndConclu(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
         XPathExpression expr = xpath.compile("//ORIENTACOES-CONCLUIDAS-PARA-MESTRADO");
         NodeList orientacoesMestradoConcluida = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
@@ -1022,7 +1047,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Orientação de Doutorado em andamento");
         Obras obra;
-        float comp=0;
+        float comp=0,aux=0;
         for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
             Node orientacao = orientacoesDoutoradoAndamento.item(i);
             String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
@@ -1032,10 +1057,12 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
                 obra.setNome("Orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                if(ano <= ANO_TRIENIO)
-                        obra.setValido(false);
-                else
-                        comp = comp+ORIENTACAO_DR_AND;
+                if(ano <= ANO_TRIENIO || (aux >=MAX_ORIENTACAO_DR_AND && MAX_ORIENTACAO_DR_AND>0))
+                    obra.setValido(false);
+                else{
+                    comp = comp+ORIENTACAO_DR_AND;
+                    aux++;
+                }
                 obra.setValor(ORIENTACAO_DR_AND);
                 levante.AddObra(obra);
             }
@@ -1053,7 +1080,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Orientação de Mestrado em andamento");
         Obras obra;
-        float comp=0;
+        float comp=0, aux=0;
         for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
             Node orientacao = orientacoesDoutoradoAndamento.item(i);
             String titulo = orientacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-TRABALHO").getTextContent();
@@ -1063,10 +1090,12 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
                 obra.setNome("Orientação de Mestrado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                if(ano <= ANO_TRIENIO)
+                if(ano <= ANO_TRIENIO || (aux >=MAX_ORIENTACAO_MS_AND && MAX_ORIENTACAO_MS_AND>0))
                         obra.setValido(false);
-                else
+                else{
                         comp = comp+ORIENTACAO_MS_AND;
+                        aux++;
+                }
                 obra.setValor(ORIENTACAO_MS_AND);
                 levante.AddObra(obra);
             }
@@ -1208,7 +1237,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Orientação Iniciação Científica andamento/concluída ");
         Obras obra;
-        float comp=0,comp1=0,comp2=0,comp3=0,comp4=0;
+        float comp=0,aux=0;
         for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
             Node orientacao = orientacoesDoutoradoAndamento.item(i);
             String titulo = orientacao.getAttributes().getNamedItem("TITULO").getTextContent();
@@ -1217,10 +1246,12 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if(natureza.equalsIgnoreCase("INICIACAO_CIENTIFICA")){
             	obra.setNome("Orientação de Iniciação Ciêntifica Concluida (" + ano + ") " + titulo);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp = comp+ORIENTACAO_IC;
+            	if(ano <= ANO_TRIENIO|| (aux >=MAX_ORIENTACAO_IC && MAX_ORIENTACAO_IC>0))
+                    obra.setValido(false);
+                else{
+                    comp = comp+ORIENTACAO_IC;
+                    aux++;
+                }
             	obra.setValor(ORIENTACAO_IC);
             	levante.AddObra(obra);
             }
@@ -1237,10 +1268,12 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if(natureza.equalsIgnoreCase("Iniciação Científica")){
             	obra.setNome("Orientação de Iniciação Ciêntifica em Andamento (" + ano + ") " + titulo + ", " + aluno);
-            	if(ano <= ANO_TRIENIO)
+            	if(ano <= ANO_TRIENIO || (aux >=MAX_ORIENTACAO_IC && MAX_ORIENTACAO_IC>0))
             		obra.setValido(false);
-            	else
-            		comp = comp+ORIENTACAO_IC;
+                else{
+                    comp = comp+ORIENTACAO_IC;
+                    aux++;
+                }
             	obra.setValor(ORIENTACAO_IC);
             	levante.AddObra(obra);
             }

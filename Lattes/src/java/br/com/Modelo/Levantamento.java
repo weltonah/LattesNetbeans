@@ -9,6 +9,7 @@ public class Levantamento {
     private int valida;
     private float valorItem;
     
+    
     public Levantamento(){
             obra = new ArrayList<Obras>();
             this.valida = 0;

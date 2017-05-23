@@ -9,7 +9,7 @@
         <font color="white">
         <strong>Desenvolvido :</strong> Pró-reitoria de Pesquisa e Pós-graduação da Universidade Federal de Juiz de Fora 2017
         <br>
-         Versão 1.0.3
+         Versão 1.1.0
          </font>
     </div>
 </div>
