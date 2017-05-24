@@ -37,6 +37,11 @@ public class SistemaController {
 	return "criterio";
          //return "manutencao";
 	}
+        @RequestMapping("/atualizacao")
+	public String atualizacao() {
+	return "atualizacao";
+         //return "manutencao";
+	}
 	@RequestMapping("/login")
 	public String login() {
 		
