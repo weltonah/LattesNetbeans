@@ -15,7 +15,6 @@ import org.w3c.dom.NodeList;
 import br.com.Modelo.Criterios;
 import br.com.Modelo.Levantamento;
 import br.com.Modelo.Obras;
-import br.com.Modelo.Pesquisador;
 import br.com.Modelo.Resultado;
 
 
