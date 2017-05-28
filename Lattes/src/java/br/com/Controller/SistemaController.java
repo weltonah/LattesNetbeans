@@ -19,14 +19,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.Analise.LattesMetricService;
 import br.com.DAO.CriterioDao;
+import br.com.DAO.ListaJCRDao;
 import br.com.Modelo.Criterios;
 import br.com.Modelo.Pesquisador;
 import br.com.Modelo.Resultado;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.Clock;
 
+
+
+
 @Controller
 public class SistemaController {
+        //ambiente de produção
+        //private final String ROOTPATH= "/var/lib/tomcat7/webapps/Lattes";
+        // ambiente de desenvolvimento
+        private final String ROOTPATH= "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Lattes";
+        private ListaJCRDao listajcr;
 	@RequestMapping("/criterio")
 	public String criterio() {
 	return "criterio";
@@ -44,9 +55,46 @@ public class SistemaController {
 	}
 	@RequestMapping("/login")
 	public String login() {
-		
 		return "login";
 	}
+        
+        @RequestMapping("/jcrupload")
+	public String jcrupload() {
+		return "jcr";
+	}
+        
+        @RequestMapping("/jcr")
+	public String jcr(Model model,@RequestParam("file") MultipartFile jcr, HttpSession session) throws IOException{
+            File convFile = new File( jcr.getOriginalFilename());
+            //file2.transferTo(convFile);
+            String fileName = null;
+            String aux = (String) session.getAttribute("area");
+                try {
+                        byte[] bytes = jcr.getBytes();
+                        fileName = jcr.getOriginalFilename();
+                        CriterioDao criDao = new CriterioDao();
+                        Criterios crit = criDao.preencher(aux);
+
+                        File file = new File(ROOTPATH + File.separator + "tmpFiles");
+                        // Create the file on server
+                        if (!file.exists())
+                                file.mkdirs();
+                        File serverFile = new File(file.getAbsolutePath() + File.separator + fileName);
+                        BufferedOutputStream stream;
+                        stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                        stream.write(bytes);
+                        stream.close();
+                        listajcr = new ListaJCRDao(serverFile);
+                        stream.close();
+                        return "jcr";
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        return e.getMessage();
+                }
+	}
+        
+        
+        
 	@RequestMapping("/submitCriterio")
 	public String submitCriterio(@RequestParam("area") String aux, HttpSession session) {
 		session.setAttribute("area", aux);
@@ -61,16 +109,10 @@ public class SistemaController {
 			try {
 				byte[] bytes = file2.getBytes();
 				fileName = file2.getOriginalFilename();
-                                 System.out.println(fileName);
 				CriterioDao criDao = new CriterioDao();
 				Criterios crit = criDao.preencher(aux);
-                                String rootPath;
-				//Versão Linux
-                                rootPath =  "/var/lib/tomcat7/webapps/Lattes";
-                                // Versão windows
-                                rootPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Lattes";
-                                        
-				File file = new File(rootPath + File.separator + "tmpFiles");
+				       
+				File file = new File(ROOTPATH + File.separator + "tmpFiles");
 				// Create the file on server
                                 if (!file.exists())
 					file.mkdirs();
@@ -79,7 +121,6 @@ public class SistemaController {
                                 stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                                 stream.write(bytes);
                                 stream.close();
-				
 				Resultado result = LattesMetricService.getPesquisador2(serverFile, crit);
 				
 				model.addAttribute("resultado", result);

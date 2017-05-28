@@ -18,7 +18,7 @@ import br.com.Modelo.Obras;
 import br.com.Modelo.Resultado;
 
 
-public class AvaliadorDefault implements Avaliador {
+public class AvaliadorDefault {
 
     public static final int ANO_TRIENIO = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).getYear() -4;
     private float DEDICACAO_EXCLUSIVA = 10;
@@ -58,10 +58,6 @@ public class AvaliadorDefault implements Avaliador {
     
     private float DOUTOR = 0;
 
-    public void avaliar() {
-    }
-    
-    @Override
     public Resultado avaliar2(Document document , Criterios crit) throws Exception {
     	 DEDICACAO_EXCLUSIVA = crit.getDedicacaoExclusiva();
          ARTIGO_COMPLETO_INDEXADO_PUBLICADO = crit.getArtCompPerioInd();
@@ -614,10 +610,6 @@ public class AvaliadorDefault implements Avaliador {
         result.setNomeCompleto(expr.evaluate(document));
     }
 
-    @Override
-    public List<Object> getResultado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     private void avaliaVinculoDedicacaoExclusiva(XPath xpath, Resultado result, Document document) throws XPathExpressionException {
         XPathExpression expr = xpath.compile("string(//ATUACAO-PROFISSIONAL[@NOME-INSTITUICAO='Universidade Federal de Juiz de Fora']/VINCULOS[@ANO-FIM='' and @TIPO-DE-VINCULO='SERVIDOR_PUBLICO']/@FLAG-DEDICACAO-EXCLUSIVA)");

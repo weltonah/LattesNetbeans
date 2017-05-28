@@ -10,32 +10,27 @@ package br.com.Modelo;
  * @author USUARIO
  */
 public class FatorImpacto {
-    private float rank;
-    private float name;
-    private float issn;
+    private String name;
+    private String issn;
     private float impacto;
 
-    public float getRank() {
-        return rank;
+    public FatorImpacto() {
+        impacto = -1;
     }
 
-    public void setRank(float rank) {
-        this.rank = rank;
-    }
-
-    public float getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(float name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public float getIssn() {
+    public String getIssn() {
         return issn;
     }
 
-    public void setIssn(float issn) {
+    public void setIssn(String issn) {
         this.issn = issn;
     }
 

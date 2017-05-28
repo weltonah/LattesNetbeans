@@ -13,12 +13,19 @@ import java.util.ArrayList;
  */
 public class ListaJCR {
     private ArrayList<FatorImpacto> Fi;
-    private int size;
-
-
-    public ListaJCR(ArrayList<FatorImpacto> Fi) {
+    
+    public ListaJCR() {
         this.Fi = new ArrayList<FatorImpacto>();
     }
+    
+    public void addJCR(FatorImpacto factor){
+       Fi.add(factor);
+    }
+    public FatorImpacto SelectJCR (int index){
+        return Fi.get(index);
+    }
+
+    
     
     public ArrayList<FatorImpacto> getFi() {
         return Fi;
@@ -26,5 +33,9 @@ public class ListaJCR {
 
     public void setFi(ArrayList<FatorImpacto> Fi) {
         this.Fi = Fi;
+    }
+
+    public int getSize() {
+        return Fi.size();
     }
 }
