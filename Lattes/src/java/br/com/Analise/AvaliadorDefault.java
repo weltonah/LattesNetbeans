@@ -534,8 +534,8 @@ public class AvaliadorDefault implements Avaliador {
             String log = "[Trab. Eventos] (" + ano + ") " + nat + ": " + titulo;
             obra = new Obras();
             if (nat.equalsIgnoreCase("COMPLETO")) {
-                String pais = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("PAIS-DO-EVENTO").getTextContent();
-                if(!pais.equalsIgnoreCase("Brasil")){
+                String pais = trabalhoNode.getChildNodes().item(1).getAttributes().getNamedItem("CLASSIFICACAO-DO-EVENTO").getTextContent();
+                if(pais.equalsIgnoreCase("INTERNACIONAL")){
                     obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
                     if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE))
                             obra.setValido(false);
@@ -546,8 +546,6 @@ public class AvaliadorDefault implements Avaliador {
                     obra.setValor(TRABALHO_COMPLETO_EVENTO_INTE);
                     levante2.AddObra(obra);
                 }
-                System.out.println(aux +" >=" + MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE);
-                
             }
         }
         expr = xpath.compile("//TRABALHO-EM-EVENTOS");
@@ -560,8 +558,8 @@ public class AvaliadorDefault implements Avaliador {
             String log = "[Trab. Eventos] (" + ano + ") " + nat + ": " + titulo;
             obra = new Obras();
             if (nat.equalsIgnoreCase("COMPLETO")) {
-                String pais = trabalhoNode.getChildNodes().item(0).getAttributes().getNamedItem("PAIS-DO-EVENTO").getTextContent();
-                if(pais.equalsIgnoreCase("Brasil")){
+                String pais = trabalhoNode.getChildNodes().item(1).getAttributes().getNamedItem("CLASSIFICACAO-DO-EVENTO").getTextContent();
+                if(!pais.equalsIgnoreCase("INTERNACIONAL")){
                     obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
                     if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE))
                             obra.setValido(false);
@@ -572,7 +570,6 @@ public class AvaliadorDefault implements Avaliador {
                     obra.setValor(TRABALHO_COMPLETO_EVENTO_NAC);
                     levante.AddObra(obra);
                 }
-                System.out.println(aux +" >=" + MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE);
             }
         }
         
@@ -619,9 +616,9 @@ public class AvaliadorDefault implements Avaliador {
     public List<Object> getResultado() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     private void avaliaVinculoDedicacaoExclusiva(XPath xpath, Resultado result, Document document) throws XPathExpressionException {
-        XPathExpression expr = xpath.compile("string(//ATUACAO-PROFISSIONAL[@NOME-INSTITUICAO='Universidade Federal de Juiz de Fora']/VINCULOS[@ANO-FIM='' and @TIPO-DE-VINCULO='SERVIDOR_PUBLICO']/@FLAG-DEDICACAO-EXCLUSIVA)");
+        XPathExpression expr = xpath.compile("string(//ATUACAO-PROFISSIONAL[@NOME-INSTITUICAO='Universidade Federal de Juiz de Fora']/VINCULOS[@ANO-FIM='']/@FLAG-DEDICACAO-EXCLUSIVA)");
         String dexc = expr.evaluate(document);
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Regime de Dedicação Exclusiva");
@@ -641,6 +638,7 @@ public class AvaliadorDefault implements Avaliador {
         levante.setValorItem(DEDICACAO_EXCLUSIVA);
         result.AddLevante(levante);
     }
+
     
     private void avaliaDoutor(XPath xpath, Resultado result, Document document) throws XPathExpressionException {
         XPathExpression expr = xpath.compile("//FORMACAO-ACADEMICA-TITULACAO/DOUTORADO");

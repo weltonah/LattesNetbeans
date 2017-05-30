@@ -22,7 +22,6 @@ public class LattesMetricService {
         Document document = docBuilder.parse(stream);
         Avaliador avaliador = new AvaliadorDefault();
         Pesquisador pesquisador = avaliador.avaliar(document);
-        System.out.println(pesquisador.getNomeCompleto());
         pesquisador.setFileName(file.getName());
         zf.close();
         return pesquisador;
