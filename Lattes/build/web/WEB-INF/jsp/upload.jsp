@@ -87,35 +87,31 @@
                 </font>
             </div>
     </div>	
-		    <div class="col-sm-12" >
-		    <div class="center2">
-		      <div class="well">
-		        <form method="post" action="upload"
-			          enctype="multipart/form-data">
-                            <h3>Upload do arquivo lattes formato .zip do professor </h3> 
-                        <div class="col-xs-12" >
-                            <!--<input type="file" name="file" class="btn btn-primary"  />-->
-                            
-                            <div class="input-group">
-                                <label class="input-group-btn">
-                                    <span class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
-                                        Selecione o arquivo&hellip; <input type="file" name="file" style="display: none;" multiple>
-                                    </span>
-                                </label>
-                                <input type="text" class="form-control" readonly>
-                            </div>
-                        </div>
-                            <br><br>
-                            <div align="right">
-                                <a href="criterio" class="btn btn-danger">Voltar</a>
-                                <button type="submit" class="btn btn-success">Analisar</button>
-                                
-                            </div>
-                        </form>
-		      </div>
-		     </div>
-		    </div>
+        <div class="col-sm-12" >
+            <div class="center2">
+              <div class="well">
+                <form method="post" action="upload" enctype="multipart/form-data">
+                    <h3>Upload do arquivo lattes formato .zip ou .xml do professor </h3> 
+                <div class="col-xs-12" >
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+                                Selecione o arquivo&hellip; <input type="file" name="file" style="display: none;" multiple>
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                </div>
+                <br><br>
+                <div align="right">
+                    <a href="criterio" class="btn btn-danger">Voltar</a>
+                    <button type="submit" class="btn btn-success">Analisar</button>
+                </div>
+                </form>
+              </div>
+             </div>
+        </div>
 </div>
     <c:import url="rodape.jsp" />
   </body>

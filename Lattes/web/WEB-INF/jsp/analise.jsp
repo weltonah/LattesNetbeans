@@ -69,11 +69,14 @@
             <div class="col-md-6 " style="background-color: #fff5cc;">
             <table class="well table table-sm">
                 <h3>Legenda</h3>
-                <tr style="background-color: #ccffeb;">
+                <tr style="background-color: #ccffb3;">
                     <th>Objeto analisado se encontra dentro do triênio</th>
                 </tr>
-                <tr style="background-color: #ffcccc;;">
+                <tr style="background-color: #ffcccc;">
                     <th>Objeto analisado se encontra fora do triênio</th>
+                </tr>
+                <tr style="background-color: #ccffeb;">
+                    <th>Objeto analisado se encontra dentro do triênio porém ultrapaça o limite maximo</th>
                 </tr>
             </table>
             </div>
@@ -93,29 +96,39 @@
                                 </tr>
 		            <c:forEach var="agenda" items="${levante.getAgenda()}">
 		      		<c:choose>
-	  					<c:when test="${agenda.getValor() == 0}">
+                                <c:when test="${agenda.getValor()==0}">
 			             <tr style="background-color: #ffcccc;">
 			             	<td>${agenda.getNome()}</td>
                                         <th>${agenda.getValor()}</th>
                                     </tr>
 	                	</c:when>
 	                	<c:otherwise>
-				             <c:choose>
-			  					<c:when test="${!agenda.isValido()}">
-					             <tr style="background-color: #ffcccc;">
-					             	<td>${agenda.getNome()}</td>
-				                    <th>0</th>
-			                	</tr>
+                                        <c:choose>
+                                                <c:when test="${!agenda.isValido()}">
+                                                    <c:choose>
+                                                        <c:when test="${agenda.getValor()== -1}">
+                                                        <tr style="background-color: #ccffeb;">
+                                                            <td>${agenda.getNome()}</td>
+                                                            <th>0</th>
+                                                        </tr>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <tr style="background-color: #ffcccc;">
+                                                            <td>${agenda.getNome()}</td>
+                                                            <th>0</th>
+                                                        </tr>
+                                                        </c:otherwise>
+                                                     </c:choose>
 			                	</c:when>
 			                	<c:otherwise>
-						             <tr style="background-color: #ccffeb;">
+						             <tr style="background-color: #ccffb3;">
 						             	<td>${agenda.getNome()}</td>
 					                    <th>${agenda.getValor()}</th>
 				                	</tr>
 			                	</c:otherwise>
 		              	 	 </c:choose>
 	                	</c:otherwise>
-              	 	 </c:choose>
+                                </c:choose>
               	  
                 	</c:forEach>
                         <tr style="background-color: #bfbfbf;">

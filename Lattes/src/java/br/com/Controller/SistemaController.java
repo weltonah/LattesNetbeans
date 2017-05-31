@@ -55,7 +55,6 @@ public class SistemaController {
 	@RequestMapping("/upload")
 	public String upload(Model model,@RequestParam("file") MultipartFile file2, HttpSession session) throws IOException {
 		File convFile = new File( file2.getOriginalFilename());
-                //file2.transferTo(convFile);
                 String fileName = null;
 		String aux = (String) session.getAttribute("area");
 			try {

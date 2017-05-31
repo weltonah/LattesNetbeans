@@ -39,7 +39,7 @@ body {
 	<div class="col-sm-12">
             <h3>Área do conhecimento </h2>
             <div class="col-sm-6">
-		<select class=" form-control" name="area" id="area">
+		<select style="width: 100%; height: 40px;" name="area" id="area">
 		  <option value="exata">Ciências Exatas</option>
 		  <option value="biologica">Ciências Biológicas</option>
 		  <option value="eng">Engenharia e Ciência da computação</option>

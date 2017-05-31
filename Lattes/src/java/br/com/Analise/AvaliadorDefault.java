@@ -56,7 +56,7 @@ public class AvaliadorDefault implements Avaliador {
     private float MAX_ORIENTACAO_MS_AND = -1;
     private float ORIENTACAO_MS_CONC = 10;
     private float ORIENTACAO_MS_AND_CONC = 10;
-    private float MAX_ORIENTACAO_MS_AND_CONC = 10;
+    private float MAX_ORIENTACAO_MS_AND_CONC = -1;
     private float COORIENTACAO_MS_AND_CONC = 3;
     private float MAX_COORIENTACAO_MS_AND_CONC = -1;
     private float COORIENTACAO_MS_CONC = 0;
@@ -547,13 +547,18 @@ public class AvaliadorDefault implements Avaliador {
                 String pais = trabalhoNode.getChildNodes().item(1).getAttributes().getNamedItem("CLASSIFICACAO-DO-EVENTO").getTextContent();
                 if(pais.equalsIgnoreCase("INTERNACIONAL")){
                     obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
-                    if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE))
+                    if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE && MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE>0)){
                             obra.setValido(false);
+                            if(aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE && MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE>0)
+                                obra.setValor(-1);
+                            else
+                            obra.setValor(TRABALHO_COMPLETO_EVENTO_INTE);
+                    }
                     else{
                         comp = comp+TRABALHO_COMPLETO_EVENTO_INTE;
                         aux++;
+                        obra.setValor(TRABALHO_COMPLETO_EVENTO_INTE);
                     }
-                    obra.setValor(TRABALHO_COMPLETO_EVENTO_INTE);
                     levante2.AddObra(obra);
                 }
             }
@@ -571,21 +576,25 @@ public class AvaliadorDefault implements Avaliador {
                 String pais = trabalhoNode.getChildNodes().item(1).getAttributes().getNamedItem("CLASSIFICACAO-DO-EVENTO").getTextContent();
                 if(!pais.equalsIgnoreCase("INTERNACIONAL")){
                     obra.setNome("Trabalho completo em evento (" + ano + ") " + nat + ": " + titulo);
-                    if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE))
+                    if(ano <= ANO_TRIENIO || (aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE && MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE>0)){
                             obra.setValido(false);
-                    else{
-                            comp = comp+TRABALHO_COMPLETO_EVENTO_NAC;
-                            aux++;
+                            if(aux>=MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE && MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE>0)
+                                obra.setValor(-1);
+                            else
+                            obra.setValor(TRABALHO_COMPLETO_EVENTO_NAC);
                     }
-                    obra.setValor(TRABALHO_COMPLETO_EVENTO_NAC);
+                    else{
+                            incomp = incomp+TRABALHO_COMPLETO_EVENTO_NAC;
+                            aux++;
+                            obra.setValor(TRABALHO_COMPLETO_EVENTO_NAC);
+                    }
                     levante.AddObra(obra);
                 }
             }
         }
-        
-        levante.setTotalValor(comp);
+        levante.setTotalValor(incomp);
         levante.setValorItem(TRABALHO_COMPLETO_EVENTO_NAC);
-        levante2.setTotalValor(incomp);
+        levante2.setTotalValor(comp);
         levante2.setValorItem(TRABALHO_COMPLETO_EVENTO_INTE);
         result.AddLevante(levante2);
         result.AddLevante(levante);
