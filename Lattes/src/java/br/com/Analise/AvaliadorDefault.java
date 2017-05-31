@@ -26,9 +26,13 @@ public class AvaliadorDefault implements Avaliador {
     private float ARTIGO_COMPLETO_INDEXADO_PUBLICADO = 15;
     private float ARTIGO_COMPLETO_ACEITO = 8;
     private float LIVRO_PUBLICADO = 20;
+    private float MAX_LIVRO_PUBLICADO = -1;
     private float LIVRO_CAPITULO = 10;
+    private float MAX_LIVRO_CAPITULO = -1;
     private float LIVRO_ORGANIZACAO = 5;
+    private float MAX_LIVRO_ORGANIZACAO = -1;
     private float TRABALHO_COMPLETO_EVENTO = 3;
+    private float MAX_TRABALHO_COMPLETO_EVENTO = -1;
     private float TRABALHO_COMPLETO_EVENTO_NAC = 4;
     private float TRABALHO_COMPLETO_EVENTO_INTE = 6;
     private float MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE = -1;
@@ -44,26 +48,32 @@ public class AvaliadorDefault implements Avaliador {
     private float MAX_ORIENTACAO_DR_AND = -1;
     private float ORIENTACAO_DR_CONC = 0;
     private float ORIENTACAO_DR_AND_CONC = 0;
+    private float MAX_ORIENTACAO_DR_AND_CONC = -1;
     private float COORIENTACAO_DR_AND_CONC = 5;
+    private float MAX_COORIENTACAO_DR_AND_CONC = -1;
     private float COORIENTACAO_DR_CONC = 0;
     private float ORIENTACAO_MS_AND = 10;
     private float MAX_ORIENTACAO_MS_AND = -1;
     private float ORIENTACAO_MS_CONC = 10;
     private float ORIENTACAO_MS_AND_CONC = 10;
+    private float MAX_ORIENTACAO_MS_AND_CONC = 10;
     private float COORIENTACAO_MS_AND_CONC = 3;
+    private float MAX_COORIENTACAO_MS_AND_CONC = -1;
     private float COORIENTACAO_MS_CONC = 0;
     private float ORIENTACAO_TFC = 0;
     private float MAX_ORIENTACAO_TFC = -1;
     private float ORIENTACAO_IC = 3;
     private float MAX_ORIENTACAO_IC = -1;
-    
     private float DOUTOR = 0;
+    private float ORIENTACAO_EXTENSAO = 0;
+    private float ORIENTACAO_TP = 0;
 
     public void avaliar() {
     }
     
     @Override
     public Resultado avaliar2(Document document , Criterios crit) throws Exception {
+        
     	 DEDICACAO_EXCLUSIVA = crit.getDedicacaoExclusiva();
          ARTIGO_COMPLETO_INDEXADO_PUBLICADO = crit.getArtCompPerioInd();
          ARTIGO_COMPLETO_ACEITO = crit.getArtCompAceitoPublic();
@@ -111,9 +121,9 @@ public class AvaliadorDefault implements Avaliador {
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             
-            setBancaMestrado(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
-            setBancaQualificacao(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
+            //setBancaDoutorado(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -137,9 +147,9 @@ public class AvaliadorDefault implements Avaliador {
           //  avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaMestrado(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
-            setBancaQualificacao(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
+            //setBancaDoutorado(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -175,11 +185,11 @@ public class AvaliadorDefault implements Avaliador {
             
             setPatentes(xpath, result, document);
             // maximo 6
-            setBancaMestrado(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
             // maxima 3
-             setBancaDoutorado(xpath, result, document);
+             //setBancaDoutorado(xpath, result, document);
             //maximo 3
-            setBancaQualificacao(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             
             setOrientacaoDouAnd(xpath, result, document);
             setOrientacaoMesAnd(xpath, result, document);
@@ -208,9 +218,9 @@ public class AvaliadorDefault implements Avaliador {
             avaliaLivrosOrganizado(xpath, result, document);
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaMestrado(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
-            setBancaQualificacao(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
+            //setBancaDoutorado(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -241,9 +251,9 @@ public class AvaliadorDefault implements Avaliador {
             avaliaLivrosOrganizado(xpath, result, document);
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaMestrado(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
-            setBancaQualificacao(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
+            //setBancaDoutorado(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -264,9 +274,9 @@ public class AvaliadorDefault implements Avaliador {
             avaliaLivrosOrganizado(xpath, result, document);
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaMestrado(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
-            setBancaQualificacao(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
+            //setBancaDoutorado(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -286,9 +296,9 @@ public class AvaliadorDefault implements Avaliador {
             avaliaLivrosOrganizado(xpath, result, document);
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
-            setBancaMestrado(xpath, result, document);
-            setBancaDoutorado(xpath, result, document);
-            setBancaQualificacao(xpath, result, document);
+            //setBancaMestrado(xpath, result, document);
+            //setBancaDoutorado(xpath, result, document);
+            //setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -307,9 +317,9 @@ public class AvaliadorDefault implements Avaliador {
         avaliaLivrosPublicados(xpath, result, document);
         avaliaCapitulosPublicados(xpath, result, document);
         setPatentes(xpath, result, document);
-        setBancaMestrado(xpath, result, document);
-        setBancaDoutorado(xpath, result, document);
-        setBancaQualificacao(xpath, result, document);
+        //setBancaMestrado(xpath, result, document);
+        //setBancaDoutorado(xpath, result, document);
+        //setBancaQualificacao(xpath, result, document);
         setOrientacaoMestradoCon(xpath, result, document);
         setOrientacaoDoutoradoCon(xpath, result, document);
         setOrientacaoEmAndamento(xpath, result, document);*/

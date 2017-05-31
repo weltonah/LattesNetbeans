@@ -68,7 +68,7 @@ public class SistemaController {
 				//Versão Linux
                                 rootPath =  "/var/lib/tomcat7/webapps/Lattes";
                                 // Versão windows
-                                //rootPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Lattes";
+                                rootPath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Lattes";
                                         
 				File file = new File(rootPath + File.separator + "tmpFiles");
 				// Create the file on server

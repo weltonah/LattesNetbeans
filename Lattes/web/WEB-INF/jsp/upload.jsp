@@ -108,7 +108,7 @@
                         </div>
                             <br><br>
                             <div align="right">
-                                <button onclick='javascript:history.back();self.location.reload();' class="btn btn-danger">Voltar</button>
+                                <a href="criterio" class="btn btn-danger">Voltar</a>
                                 <button type="submit" class="btn btn-success">Analisar</button>
                                 
                             </div>

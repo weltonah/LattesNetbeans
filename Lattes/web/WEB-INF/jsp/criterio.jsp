@@ -91,15 +91,15 @@ body {
 				Depósitos de patentes internacionais
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
@@ -155,15 +155,15 @@ body {
 				Depósitos de patentes internacionais
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
@@ -239,15 +239,15 @@ body {
 				Depósitos de patentes internacionais
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa (limite máximo de 6)
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa (limite máximo de 3)
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa (limite máximo de 3)
 			</div>
 			<div>
@@ -326,15 +326,15 @@ body {
 				Depósitos de patentes internacionais
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
@@ -401,15 +401,15 @@ body {
 				Depósitos de patentes internacionais
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
@@ -476,15 +476,15 @@ body {
 				Depósitos de patentes internacionais
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
@@ -563,15 +563,15 @@ body {
 				Produção artística individual em âmbito internacional
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Mestrado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Doutorado externa ao programa
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
 				Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
