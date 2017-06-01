@@ -37,6 +37,19 @@
         <div class="col-sm-6">
         <h3>Atualizações do sistema</h3>
         <ul>
+            <li>versão 1.2.0 (01/06/2017)</li>
+             <ul>
+                  <li>Correções relativas a contabilidade de Trabalhos em eventos nacionais e internacionais</li>
+                  <li>Retirada de Analise de Banca externa</li>
+                  <li>correções do botão voltar da pagina upload </li>
+                  <li>Leitura de arquivo .xml na opção de upload</li>
+                  <li>correções do select da pagina criterios</li>
+                  <li>correções da contabilização de organização, capiutulos e livros</li>
+                  <li>destaque de valores validos na tabela e outras observações colocada na interface</li>
+                  <li>implentação da travas para a area de engenharia</li>
+                  <li>criação de legenda para projetos que estão no trienio mas ultrapassam o maiximo</li>
+             </ul>
+            
              <li>versão 1.1.0</li>
              <ul>
                   <li>Correções relativas a contabilidade de orientação de Mestrado e Doutorado [Todas as áreas]</li>

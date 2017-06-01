@@ -35,7 +35,7 @@
         <tr style="background-color: #e6eeff;">
             <th>Categoria</th>
             <th>Quantidade <br>
-                (Validos/Total)
+                (Válidos* /Total)
             </th>
             <th>Pontuação por item</th>
             <th>Pontuação total</th>
@@ -43,7 +43,7 @@
         <c:forEach var="tipo" items="${resultado.getLevante()}">
             <tr>
                 <th>${tipo.getTipoObra()}</th>
-                <td>${tipo.getValida()} / ${tipo.getAgenda().size()}</td>
+                <td><strong style="color:green;"> ${tipo.getValida()} </strong>/ ${tipo.getAgenda().size()}</td>
                 <td>${tipo.getValorItem()}</td>
                 <td>${tipo.getTotalValor()}</td>
             </tr>
@@ -54,7 +54,11 @@
                 <td></td>
                 <td>${resultado.getTotalValor()}</td>
             </tr>
+            
     </table>
+            <div>
+                <span> * Na contagem só são contabilizados os itens que são válidos de acordo com as regras do triênio e do edital</span>
+            </div>
     </div>
     <div class="col-md-12">
     <hr size="30" style="border: 1px solid #ccc">

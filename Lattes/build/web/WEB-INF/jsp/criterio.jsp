@@ -34,8 +34,12 @@ body {
   <body>
       <c:import url="cabecalho.jsp" />
       <div class="mx-auto" style="margin: 0 auto; width: 70%; position: relative;">
+          <div class="alert alert-warning col-sm-12" style="margin-top: 10px;">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <label style="padding-left: 10px;"> Este sistema esta calibrado para analisar corriculos de docentes da Universidade Federal de Juiz de fora </label>
+          </div>
+          
 	<form class="form-horizontal" action="submitCriterio">
-            
 	<div class="col-sm-12">
             <h3>Área do conhecimento </h2>
             <div class="col-sm-6">

@@ -24,7 +24,9 @@ public class AvaliadorDefault implements Avaliador {
     public static final int ANO_TRIENIO = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).getYear() -4;
     private float DEDICACAO_EXCLUSIVA = 10;
     private float ARTIGO_COMPLETO_INDEXADO_PUBLICADO = 15;
+    private float MAX_ARTIGO_COMPLETO_INDEXADO_PUBLICADO = -1;
     private float ARTIGO_COMPLETO_ACEITO = 8;
+    private float MAX_ARTIGO_COMPLETO_ACEITO = -1;
     private float LIVRO_PUBLICADO = 20;
     private float MAX_LIVRO_PUBLICADO = -1;
     private float LIVRO_CAPITULO = 10;
@@ -37,7 +39,9 @@ public class AvaliadorDefault implements Avaliador {
     private float TRABALHO_COMPLETO_EVENTO_INTE = 6;
     private float MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE = -1;
     private float PATENTE_NACIONAL = 10;
+    private float MAX_PATENTE_NACIONAL = -1;
     private float PATENTE_INTERNACIONAL = 15;
+    private float MAX_PATENTE_INTERNACIONAL = -1;
     private float BANCA_MS_EXTERNA = 5;
     private float MAX_BANCA_MS_EXTERNA = -1;
     private float BANCA_DR_EXTERNA = 7;
@@ -47,14 +51,17 @@ public class AvaliadorDefault implements Avaliador {
     private float ORIENTACAO_DR_AND = 0;
     private float MAX_ORIENTACAO_DR_AND = -1;
     private float ORIENTACAO_DR_CONC = 0;
+    private float MAX_ORIENTACAO_DR_CONC = -1;
     private float ORIENTACAO_DR_AND_CONC = 0;
     private float MAX_ORIENTACAO_DR_AND_CONC = -1;
     private float COORIENTACAO_DR_AND_CONC = 5;
     private float MAX_COORIENTACAO_DR_AND_CONC = -1;
     private float COORIENTACAO_DR_CONC = 0;
+    private float MAX_COORIENTACAO_DR_CONC = -1;
     private float ORIENTACAO_MS_AND = 10;
     private float MAX_ORIENTACAO_MS_AND = -1;
     private float ORIENTACAO_MS_CONC = 10;
+    private float MAX_ORIENTACAO_MS_CONC = -1;
     private float ORIENTACAO_MS_AND_CONC = 10;
     private float MAX_ORIENTACAO_MS_AND_CONC = -1;
     private float COORIENTACAO_MS_AND_CONC = 3;
@@ -66,7 +73,9 @@ public class AvaliadorDefault implements Avaliador {
     private float MAX_ORIENTACAO_IC = -1;
     private float DOUTOR = 0;
     private float ORIENTACAO_EXTENSAO = 0;
+    private float MAX_ORIENTACAO_EXTENSAO = -1;
     private float ORIENTACAO_TP = 0;
+    private float MAX_ORIENTACAO_TP = -1;
 
     public void avaliar() {
     }
@@ -330,10 +339,8 @@ public class AvaliadorDefault implements Avaliador {
         NodeList artigos = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Artigos completos em periódico indexados");
-        Levantamento levante2 = new Levantamento();
-        levante2.setTipoObra("Artigos em periódico");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0,aux=0;
         for (int i = 0; i < artigos.getLength(); i++) {
             Node artigoNode = artigos.item(i);
             String titulo = artigoNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-ARTIGO").getTextContent();
@@ -343,28 +350,25 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (artigoNode.getChildNodes().item(0).getAttributes().getNamedItem("NATUREZA").getTextContent().equalsIgnoreCase("COMPLETO")) {
             	obra.setNome(log);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else{
-            		comp = comp+ARTIGO_COMPLETO_INDEXADO_PUBLICADO;
-            	}
-            	obra.setValor(ARTIGO_COMPLETO_INDEXADO_PUBLICADO);
-            	levante.AddObra(obra);
-            } else {
-            	obra.setNome(log);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	obra.setValor(0);
-            	incomp = incomp+0;
-            	levante2.AddObra(obra);
+                    if(ano <= ANO_TRIENIO || (aux>=MAX_ARTIGO_COMPLETO_INDEXADO_PUBLICADO && MAX_ARTIGO_COMPLETO_INDEXADO_PUBLICADO>0)){
+                    obra.setValido(false);
+                    if(aux>=MAX_ARTIGO_COMPLETO_INDEXADO_PUBLICADO && MAX_ARTIGO_COMPLETO_INDEXADO_PUBLICADO>0)
+                            obra.setValor(-1);
+                    else
+                    obra.setValor(ARTIGO_COMPLETO_INDEXADO_PUBLICADO);
+                }
+                else{
+                        comp = comp+ARTIGO_COMPLETO_INDEXADO_PUBLICADO;
+                        aux++;
+                        obra.setValor(ARTIGO_COMPLETO_INDEXADO_PUBLICADO);
+                }
+                levante.AddObra(obra);
             }
         }
         levante.setTotalValor(comp);
         levante.setValorItem(ARTIGO_COMPLETO_INDEXADO_PUBLICADO);
-        levante2.setTotalValor(incomp);
         result.AddLevante(levante);
-       // result.AddLevante(levante2);
-        result.someTotal(comp+incomp);
+        result.someTotal(comp);
     }
 
     private void avaliaArtigosAceitos(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
@@ -372,10 +376,8 @@ public class AvaliadorDefault implements Avaliador {
         NodeList artigos = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Artigos completos aceitos para publicação");
-        Levantamento levante2 = new Levantamento();
-        levante2.setTipoObra("Artigos aceitos para publicação");
         Obras obra;
-        float comp=0,incomp = 0;
+        float comp=0,aux =0;
         for (int i = 0; i < artigos.getLength(); i++) {
             Node artigoNode = artigos.item(i);
             String titulo = artigoNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-ARTIGO").getTextContent();
@@ -383,31 +385,25 @@ public class AvaliadorDefault implements Avaliador {
             Integer ano = Integer.valueOf(artigoNode.getChildNodes().item(0).getAttributes().getNamedItem("ANO-DO-ARTIGO").getTextContent());
             String log = "Artigo (" + ano + ") " + titulo + " - " + periodico;
             obra = new Obras();
-            if (artigoNode.getChildNodes().item(0).getAttributes().getNamedItem("NATUREZA").getTextContent().equalsIgnoreCase("COMPLETO")) {
             	obra.setNome(log);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp = comp+ARTIGO_COMPLETO_ACEITO;
-            	obra.setValor(ARTIGO_COMPLETO_ACEITO);
-            	levante.AddObra(obra);
-            } else {
-            	obra.setNome(log);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	obra.setValor(0);
-            	incomp = incomp+0;
-            	levante2.AddObra(obra);
-            }
-            
+            	if(ano <= ANO_TRIENIO || (aux>=MAX_ARTIGO_COMPLETO_ACEITO && MAX_ARTIGO_COMPLETO_ACEITO>0)){
+                    obra.setValido(false);
+                    if(aux>=MAX_ARTIGO_COMPLETO_ACEITO && MAX_ARTIGO_COMPLETO_ACEITO>0)
+                            obra.setValor(-1);
+                    else
+                    obra.setValor(ARTIGO_COMPLETO_ACEITO);
+                }
+                else{
+                        comp = comp+ARTIGO_COMPLETO_ACEITO;
+                        aux++;
+                        obra.setValor(ARTIGO_COMPLETO_ACEITO);
+                }
+                levante.AddObra(obra);
         }
         levante.setTotalValor(comp);
         levante.setValorItem(ARTIGO_COMPLETO_ACEITO);
-        levante2.setTotalValor(incomp);
         result.AddLevante(levante);
-       // result.AddLevante(levante2);
-
-        result.someTotal(comp+incomp);
+        result.someTotal(comp);
     }
 
     private void avaliaLivrosPublicados(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
@@ -416,7 +412,7 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Livros publicados");
         Obras obra;
-        float comp=0;
+        float comp=0,aux=0;
         for (int i = 0; i < livros.getLength(); i++) {
             Node livroNode = livros.item(i);
             String titulo = livroNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-LIVRO").getTextContent();
@@ -425,12 +421,19 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (tipo.equals("LIVRO_PUBLICADO")) {
             	obra.setNome("Livro Publicado (" + ano + ")" + titulo);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp = comp+LIVRO_PUBLICADO;
-            	obra.setValor(LIVRO_PUBLICADO);
-            	levante.AddObra(obra);
+            	if(ano <= ANO_TRIENIO || (aux>=MAX_LIVRO_PUBLICADO && MAX_LIVRO_PUBLICADO>0)){
+                    obra.setValido(false);
+                    if(aux>=MAX_LIVRO_PUBLICADO && MAX_LIVRO_PUBLICADO >0)
+                            obra.setValor(-1);
+                    else
+                    obra.setValor(LIVRO_PUBLICADO);
+                }
+                else{
+                    comp = comp+LIVRO_PUBLICADO;
+                    aux++;
+                    obra.setValor(LIVRO_PUBLICADO);
+                }
+                levante.AddObra(obra);
             }
         }
         levante.setTotalValor(comp);
@@ -445,21 +448,29 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Organização de livros");
         Obras obra;
-        float comp=0;
+        float comp=0,aux=0;
         for (int i = 0; i < livros.getLength(); i++) {
             Node livroNode = livros.item(i);
             String titulo = livroNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-LIVRO").getTextContent();
             String tipo = livroNode.getChildNodes().item(0).getAttributes().getNamedItem("TIPO").getTextContent();
             Integer ano = Integer.valueOf(livroNode.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
             obra = new Obras();
-            if (!tipo.equals("LIVRO_PUBLICADO")) {
-            	obra.setNome("Livro Publicado (" + ano + ")" + titulo);
-            	if(ano <= ANO_TRIENIO)
-            		obra.setValido(false);
-            	else
-            		comp = comp+LIVRO_ORGANIZACAO;
-            	obra.setValor(LIVRO_ORGANIZACAO);
-            	levante.AddObra(obra);
+            if (tipo.equals("LIVRO_ORGANIZADO_OU_EDICAO")) {
+            	obra.setNome("Livro Organizado (" + ano + ")" + titulo);
+            	if(ano <= ANO_TRIENIO || (aux>=MAX_LIVRO_ORGANIZACAO && MAX_LIVRO_ORGANIZACAO>0)){
+                    obra.setValido(false);
+                    if(aux>=MAX_LIVRO_ORGANIZACAO && MAX_LIVRO_ORGANIZACAO >0)
+                            obra.setValor(-1);
+                    else
+                    obra.setValor(LIVRO_ORGANIZACAO);
+                }
+                else{ 
+                    comp = comp+LIVRO_ORGANIZACAO;
+                    aux++;
+                    System.out.println(LIVRO_ORGANIZACAO);
+                    obra.setValor(LIVRO_ORGANIZACAO);
+                }
+                levante.AddObra(obra);
             }
         }
         levante.setTotalValor(comp);
@@ -474,19 +485,26 @@ public class AvaliadorDefault implements Avaliador {
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Capitulos de livros");
         Obras obra;
-        float comp=0;
+        float comp=0,aux=0;
         for (int i = 0; i < capitulos.getLength(); i++) {
             Node capLivroNode = capitulos.item(i);
             String titulo = capLivroNode.getChildNodes().item(0).getAttributes().getNamedItem("TITULO-DO-CAPITULO-DO-LIVRO").getTextContent();
             Integer ano = Integer.valueOf(capLivroNode.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
             obra = new Obras();
             obra.setNome("Capítulo de livro (" + ano + ") " + titulo);
-        	if(ano <= ANO_TRIENIO)
-        		obra.setValido(false);
-                else 
-        		comp = comp+LIVRO_CAPITULO;
-        	obra.setValor(LIVRO_CAPITULO);
-        	levante.AddObra(obra);
+        	if(ano <= ANO_TRIENIO || (aux>=MAX_LIVRO_CAPITULO && MAX_LIVRO_CAPITULO>0)){
+                    obra.setValido(false);
+                    if(aux>=MAX_LIVRO_CAPITULO && MAX_LIVRO_CAPITULO >0)
+                            obra.setValor(-1);
+                    else
+                    obra.setValor(LIVRO_CAPITULO);
+                }
+                else{
+                    comp = comp+LIVRO_CAPITULO;
+                    aux++;
+                    obra.setValor(LIVRO_CAPITULO);
+                }
+                levante.AddObra(obra);
         }
         levante.setTotalValor(comp);
         levante.setValorItem(LIVRO_CAPITULO);
@@ -1074,7 +1092,7 @@ public class AvaliadorDefault implements Avaliador {
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
                 obra.setNome("Orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                if(ano <= ANO_TRIENIO || (aux >=MAX_ORIENTACAO_DR_AND && MAX_ORIENTACAO_DR_AND>0))
+                if(ano <= ANO_TRIENIO || (aux >= MAX_ORIENTACAO_DR_AND && MAX_ORIENTACAO_DR_AND>0))
                     obra.setValido(false);
                 else{
                     comp = comp+ORIENTACAO_DR_AND;
