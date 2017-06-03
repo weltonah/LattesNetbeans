@@ -29,8 +29,6 @@ public class LattesMetricService {
     }*/
     public static Resultado getPesquisador2(File file, Criterios crit) throws Exception  {
         String nome = file.getName();
-        System.out.println(nome);
-        System.out.println(nome.contains(".xml"));
         InputStream stream;ZipFile zf = null;
         Resultado result = null;
         if(nome.contains(".zip")){
@@ -40,7 +38,7 @@ public class LattesMetricService {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = docBuilder.parse(stream);
-            Avaliador avaliador = new AvaliadorDefault();
+            AvaliadorDefault avaliador = new AvaliadorDefault();
             result = avaliador.avaliar2(document, crit);
             result.setFileName(file.getName());
             zf.close();
@@ -50,7 +48,7 @@ public class LattesMetricService {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
             Document document = docBuilder.parse(stream);
-            Avaliador avaliador = new AvaliadorDefault();
+            AvaliadorDefault avaliador = new AvaliadorDefault();
             result = avaliador.avaliar2(document, crit);
             result.setFileName(file.getName());
         }

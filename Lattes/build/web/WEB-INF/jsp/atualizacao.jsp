@@ -37,6 +37,12 @@
         <div class="col-sm-6">
         <h3>Atualizações do sistema</h3>
         <ul>
+            <li>versão 1.2.1 (02/06/2017)</li>
+             <ul>
+                 <li>inclusão de link para sugestão</li>
+                 <li>Alteração da interface</li>
+                 <li>Aaaaaaaaaaaaaaa</li>
+            </ul>
             <li>versão 1.2.0 (01/06/2017)</li>
              <ul>
                   <li>Correções relativas a contabilidade de Trabalhos em eventos nacionais e internacionais</li>
