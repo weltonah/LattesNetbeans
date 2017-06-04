@@ -384,19 +384,19 @@ body {
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+				Livros publicados (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+				Capitulos de livros (limite máximo de 12)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros
+				Organização de livros (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos completos em eventos
+				Trabalhos completos em eventos (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -408,35 +408,35 @@ body {
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+				Banca de Mestrado externa ao programa (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+				Banca de Doutorado externa ao programa (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+				Banca de Qualificação de Doutorado externa ao programa (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída 
+				Orientação de Doutorado em andamento/concluída (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída
+				Co-orientação de Doutorado em andamento/concluída (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída 
+				Orientação de Mestrado em andamento/concluída  (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída
+				Co-orientação de Mestrado em andamento/concluída (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+				Orientação Iniciação Científica andamento/concluída  (limite máximo de 18)
 			</div>
                         <div>
                             <br><br>

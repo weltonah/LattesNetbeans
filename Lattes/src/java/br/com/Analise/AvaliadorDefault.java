@@ -175,6 +175,7 @@ public class AvaliadorDefault{
             MAX_BANCA_DR_EXTERNA = 3;
             MAX_BANCA_MS_EXTERNA = 6;
             MAX_TRABALHO_COMPLETO_EVENTO_NAC_INTE = 9;
+            
             setNomeCompleto(xpath, result, document);
             setAtualizacao(xpath, document, result);
             setLattes(xpath, result, document);
@@ -238,7 +239,19 @@ public class AvaliadorDefault{
             serOrientacaoIC(xpath, result, document);
         }
         if(crit.getArea().equals("social")){
-        	setNomeCompleto(xpath, result, document);
+            MAX_LIVRO_CAPITULO = 12;
+            MAX_LIVRO_ORGANIZACAO = 3;
+            MAX_LIVRO_PUBLICADO = 3;
+            MAX_TRABALHO_COMPLETO_EVENTO = 18;
+            MAX_BANCA_DR_EXTERNA = 18;
+            MAX_BANCA_MS_EXTERNA = 18;
+            MAX_BANCA_QL_EXTERNA =18;
+            MAX_ORIENTACAO_DR_AND_CONC=18;
+            MAX_COORIENTACAO_DR_AND_CONC=18;
+            MAX_ORIENTACAO_MS_AND_CONC=18;
+            MAX_COORIENTACAO_MS_AND_CONC=18;
+            MAX_ORIENTACAO_IC =18;
+            setNomeCompleto(xpath, result, document);
             setAtualizacao(xpath, document, result);
             setLattes(xpath, result, document);
             setResumoCV(xpath, result, document);
