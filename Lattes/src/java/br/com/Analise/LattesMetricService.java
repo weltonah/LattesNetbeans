@@ -41,6 +41,7 @@ public class LattesMetricService {
             AvaliadorDefault avaliador = new AvaliadorDefault();
             result = avaliador.avaliar2(document, crit);
             result.setFileName(file.getName());
+            ze.clone();
             zf.close();
         }
         else{
@@ -52,6 +53,7 @@ public class LattesMetricService {
             result = avaliador.avaliar2(document, crit);
             result.setFileName(file.getName());
         }
+        stream.close();
         return result;
     }
 }
