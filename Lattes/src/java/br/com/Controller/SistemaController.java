@@ -189,5 +189,17 @@ public class SistemaController {
 	public String Doutor() {
 		return "criterio/Doutor";
 	}
+        @RequestMapping("/BancMes")
+	public String BancMes() {
+		return "criterio/BancMes";
+	}
+        @RequestMapping("/BancDou")
+	public String BancDou() {
+		return "criterio/BancDou";
+	}
+        @RequestMapping("/BancQuaDou")
+	public String BancQuaDou() {
+		return "criterio/BancQuaDou";
+	}
         
 }

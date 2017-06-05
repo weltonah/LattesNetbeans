@@ -108,7 +108,7 @@ public class AvaliadorDefault{
          COORIENTACAO_MS_CONC = crit.getCoriMestConc();
          COORIENTACAO_MS_AND_CONC = crit.getCoriMestAndConc();
          ORIENTACAO_IC = crit.getOriIcAndConc();
-         
+         ORIENTACAO_TFC = crit.getOriTfc();
         
          DOUTOR = crit.getDoutor();
         XPathFactory xPathfactory = XPathFactory.newInstance();
@@ -130,9 +130,9 @@ public class AvaliadorDefault{
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
             
-            //setBancaMestrado(xpath, result, document);
-            //setBancaDoutorado(xpath, result, document);
-            //setBancaQualificacao(xpath, result, document);
+            setBancaMestrado(xpath, result, document);
+            setBancaDoutorado(xpath, result, document);
+            setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -214,6 +214,7 @@ public class AvaliadorDefault{
 //            maximo 9 Orientação de Mestrado em Andamento
 //            maximo 24 Orientação Iniciação Científica andamento/concluída 
             serOrientacaoIC(xpath, result, document);
+            serOrientacaoTFC(xpath, result, document);
         }
         if(crit.getArea().equals("saude")){
         	setNomeCompleto(xpath, result, document);
@@ -833,11 +834,12 @@ public class AvaliadorDefault{
         for (int i = 0; i < bancasDeQualificacao.getLength(); i++) {
             Node bancaDeQualificacao = bancasDeQualificacao.item(i);
             String titulo = bancaDeQualificacao.getChildNodes().item(0).getAttributes().getNamedItem("TITULO").getTextContent();
-            String tipo = bancaDeQualificacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-INSTITUICAO").getTextContent();
+            String local = bancaDeQualificacao.getChildNodes().item(1).getAttributes().getNamedItem("NOME-INSTITUICAO").getTextContent();
+            String natureza = bancaDeQualificacao.getChildNodes().item(0).getAttributes().getNamedItem("NATUREZA").getTextContent();
             Integer ano = Integer.valueOf(bancaDeQualificacao.getChildNodes().item(0).getAttributes().getNamedItem("ANO").getTextContent());
             obra = new Obras();
-            if (!tipo.equalsIgnoreCase("Universidade Federal de Juiz de Fora")) {
-            	obra.setNome( "Banca de Qualificação (" + ano + ") " + titulo + " - " + tipo);
+            if (!local.equalsIgnoreCase("Universidade Federal de Juiz de Fora") && natureza.equalsIgnoreCase("Exame de qualificação de doutorado")) {
+            	obra.setNome( "Banca de Qualificação de Doutorado (" + ano + ") " + titulo + " - " + local);
             	    if(ano <= ANO_TRIENIO || (aux>=MAX_BANCA_QL_EXTERNA && MAX_BANCA_QL_EXTERNA>0)){
                         obra.setValido(false);
                         if(aux>=MAX_BANCA_QL_EXTERNA && MAX_BANCA_QL_EXTERNA>0)
@@ -1407,6 +1409,41 @@ public class AvaliadorDefault{
         }
         levante.setTotalValor(comp);
         levante.setValorItem(ORIENTACAO_IC);
+        result.AddLevante(levante);
+        result.someTotal(comp);
+    }
+    private void serOrientacaoTFC(XPath xpath, Resultado result, Document document) throws XPathExpressionException, NumberFormatException {
+        XPathExpression expr = xpath.compile("//DADOS-BASICOS-DE-OUTRAS-ORIENTACOES-CONCLUIDAS");
+        NodeList orientacoesDoutoradoAndamento = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        Levantamento levante = new Levantamento();
+        levante.setTipoObra("Orientação de Trabalho de conclusão de Curso concluída ");
+        Obras obra;
+        float comp=0,aux=0;
+        for (int i = 0; i < orientacoesDoutoradoAndamento.getLength(); i++) {
+            Node orientacao = orientacoesDoutoradoAndamento.item(i);
+            String titulo = orientacao.getAttributes().getNamedItem("TITULO").getTextContent();
+            String natureza = orientacao.getAttributes().getNamedItem("NATUREZA").getTextContent();
+            Integer ano = Integer.valueOf(orientacao.getAttributes().getNamedItem("ANO").getTextContent());
+            obra = new Obras();
+            if(natureza.equalsIgnoreCase("TRABALHO_DE_CONCLUSAO_DE_CURSO_GRADUACAO")){
+            	obra.setNome("Orientação de Trabalho de conclusão de Curso Concluida (" + ano + ") " + titulo );
+            	if(ano <= ANO_TRIENIO || (aux>=MAX_ORIENTACAO_TFC && MAX_ORIENTACAO_TFC>0)){
+                obra.setValido(false);
+                if(aux>=MAX_ORIENTACAO_TFC && MAX_ORIENTACAO_TFC>0)
+                        obra.setValor(-1);
+                else
+                obra.setValor(ORIENTACAO_TFC);
+            }
+            else{
+                    comp = comp+ORIENTACAO_TFC;
+                    aux++;
+                    obra.setValor(ORIENTACAO_TFC);
+            }
+            levante.AddObra(obra);
+            }
+        }
+        levante.setTotalValor(comp);
+        levante.setValorItem(ORIENTACAO_TFC);
         result.AddLevante(levante);
         result.someTotal(comp);
     }

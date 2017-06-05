@@ -55,6 +55,13 @@ body {
 		  <option value="letras">Linguística, Letras e Artes</option>
 		</select>
             </div>
+            <div class="col-sm-3"></div>
+             <div class="col-sm-2"><button type="submit" class="btn btn-primary btn-lg ">Avançar -></button></div>
+             <div class="col-sm-1"></div>
+        </div>
+        </form>
+        <div class="col-md-12">
+        <hr size="30" style="border: 1px solid #ccc">
         </div>
 	<div class="col-md-12">
 	 <h3>Critérios analisados</h3>
@@ -117,16 +124,20 @@ body {
                             <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Mestrado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancMes" target="_blank"></a>
+                            
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancDou" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Qualificação de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancQuaDou" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -331,7 +342,7 @@ body {
                             <a class="glyphicon glyphicon-question-sign" href="CoriMesCon" target="_blank"></a>
 			</div>
                         <div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Orientação TFC Concluída (limite máximo de 12)
 			</div>
 			<div>
@@ -708,9 +719,9 @@ body {
 		</div>
 	</div>  
                 
-        <div align="right"><button type="submit" class="btn btn-primary">Selecionar</button></div>
+       
         </div>
-        </form>	
+        	
           <div class="col-md-12">
             <br><br><br>
           </div>

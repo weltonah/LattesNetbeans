@@ -37,12 +37,14 @@
         <div class="col-sm-6">
         <h3>Atualizações do sistema</h3>
         <ul>
-            <li>versão 1.2.1 (02/06/2017)</li>
+            <li>versão 1.2.1 (05/06/2017)</li>
              <ul>
                  <li>inclusão de link para sugestão</li>
                  <li>Alteração da interface</li>
                  <li>Travas da aplicadas [Socias Aplicada]</li>
                  <li>Criação de explicação de criterios analisados</li>
+                 <li>Ativo o criterio de analise de trabalho de conclusão de curso</li>
+                 <li>Ativo o criterio de Bancas externas para Exatas</li>
             </ul>
             <li>versão 1.2.0 (01/06/2017)</li>
              <ul>
@@ -71,7 +73,6 @@
         <ul>
             <li> Funcionalidades</li>
             <ul>
-                <li>Implementação de analise de orientação de TFC (engenharia)</li>
                 <li>Implementação de analise de Artigos via fator de impacto (biologia)</li>
                 <li>Implementação de analise de Artigos via JCR (engenharia)</li>
                 <li>Implementação de analise de Artigos via Qualis (sociais)</li>
