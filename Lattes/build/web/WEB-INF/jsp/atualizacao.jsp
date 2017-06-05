@@ -42,6 +42,7 @@
                  <li>inclusão de link para sugestão</li>
                  <li>Alteração da interface</li>
                  <li>Travas da aplicadas [Socias Aplicada]</li>
+                 <li>Criação de explicação de criterios analisados</li>
             </ul>
             <li>versão 1.2.0 (01/06/2017)</li>
              <ul>

@@ -710,7 +710,7 @@ public class AvaliadorDefault{
             String tipo = patenteNode.getAttributes().getNamedItem("PAIS").getTextContent();
             Integer ano = Integer.valueOf(patenteNode.getAttributes().getNamedItem("ANO-DESENVOLVIMENTO").getTextContent());
             obra = new Obras();
-            if (!tipo.equals("BRASIL")) {
+            if (!tipo.equals("Brasil")) {
             	obra.setNome("Patente  Internacional: " + titulo);
                     if(ano <= ANO_TRIENIO || (aux>=MAX_PATENTE_INTERNACIONAL && MAX_PATENTE_INTERNACIONAL>0)){
                         obra.setValido(false);

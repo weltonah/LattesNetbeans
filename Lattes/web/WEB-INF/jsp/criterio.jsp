@@ -59,138 +59,174 @@ body {
 	<div class="col-md-12">
 	 <h3>Critérios analisados</h3>
         <div class="well" style="background-color: #e6eeff;">
+            <div class="well row"> 
+                <h5 style="margin-left: 40%;"><strong>Legenda</strong></h5>
+                <div class="col-sm-6">
+                <span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
+                    Criterio ativado para analise na ferramenta
+                </div>
+                <div class="col-sm-6">
+                <span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+                    Criterio desativado para analise na ferramenta
+                </div>
+            </div>
 		<div id="exata" class="formulario">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
 				Regime de Dedicação Exclusiva
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+                            Artigos completos em periódico indexados
+                        <a class="glyphicon glyphicon-question-sign" href="artComplInd" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+                            Artigos completos aceitos para publicação
+                        <a class="glyphicon glyphicon-question-sign" href="artComplAceito" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+                            Livros publicados
+                        <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+                            Capitulos de livros
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros
+                            Organização de livros
+                            <a class="glyphicon glyphicon-question-sign" href="livroOrg" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos completos em eventos
+                            Trabalhos completos em eventos
+                            <a class="glyphicon glyphicon-question-sign" href="trabEve" target="_blank"></a>    
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+                            Banca de Mestrado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+                            Banca de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+                            Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída 
+                            Orientação de Doutorado em andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída
+                            Co-orientação de Doutorado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída 
+                            Orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída
+                            Co-orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+                            Orientação Iniciação Científica andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
+                            
 			</div>
 		</div>
 		
 		<div id="biologica" class="formulario" style="display:none;">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Regime de Dedicação Exclusiva
+				Regime de Dedicação Exclusiva                            
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos em periódico indexados *
+                            Artigos completos em periódico indexados *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação *
+                            Artigos completos aceitos para publicação *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+                            Livros publicados
+                            <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+                            Capitulos de livros
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+                            Banca de Mestrado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+                            Banca de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+                            Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída 
+                            Orientação de Doutorado em andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída
+                            Co-orientação de Doutorado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída 
+                            Orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída
+                            Co-orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+                            Orientação Iniciação Científica andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
 			</div>
                         <div>
                             <br><br>
@@ -202,91 +238,106 @@ body {
 		<div id="eng" class="formulario" style="display:none;">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Regime de Dedicação Exclusiva
+                            Regime de Dedicação Exclusiva
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos em periódico indexados *
+                            Artigos completos em periódico indexados *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação *
+                            Artigos completos aceitos para publicação *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+                            Livros publicados
+                            <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+                            Capitulos de livros
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros
+                            Organização de livros
+                            <a class="glyphicon glyphicon-question-sign" href="livroOrg" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos Completos em Eventos Internacionais
+                            Trabalhos Completos em Eventos Internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="TraEvInt" target="_blank"></a>
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos Completos em Eventos Nacionais
+                            Trabalhos Completos em Eventos Nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="TraEvNac" target="_blank"></a>
 			</div>
                         <div>
-				(Eventos Internacionais + Eventos Nacionais) possui limite máximo de 9
+                            (Eventos Internacionais + Eventos Nacionais) possui limite máximo de 9
 			</div>
                     
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa (limite máximo de 6)
+                            Banca de Mestrado externa ao programa (limite máximo de 6)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa (limite máximo de 3)
+                            Banca de Doutorado externa ao programa (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa (limite máximo de 3)
+                            Banca de Qualificação de Doutorado externa ao programa (limite máximo de 3)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em Andamento (limite máximo de 3)
+                            Orientação de Doutorado em Andamento (limite máximo de 3)
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAnd" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em Andamento (limite máximo de 9)
+                            Orientação de Mestrado em Andamento (limite máximo de 9)
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAnd" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado Concluída  
+                            Orientação de Doutorado Concluída  
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado Concluída 
+                            Orientação de Mestrado Concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado Concluída
+                            Co-orientação de Doutorado Concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-Orientação de Mestrado Concluída
+                            Co-Orientação de Mestrado Concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriMesCon" target="_blank"></a>
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Orientação TFC Concluída (limite máximo de 12)
+                            Orientação TFC Concluída (limite máximo de 12)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída  (limite máximo de 24)
+                            Orientação Iniciação Científica andamento/concluída  (limite máximo de 24)
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
 			</div>
                         <div>
                             <br><br>
@@ -297,146 +348,173 @@ body {
 		<div id="saude" class="formulario" style="display:none;">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Regime de Dedicação Exclusiva
+                            Regime de Dedicação Exclusiva
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+                            Artigos completos em periódico indexados
+                            <a class="glyphicon glyphicon-question-sign" href="artComplInd" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+                            Artigos completos aceitos para publicação
+                            <a class="glyphicon glyphicon-question-sign" href="artComplAceito" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+                            Livros publicados
+                            <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+                            Capitulos de livros
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros
+                            Organização de livros
+                            <a class="glyphicon glyphicon-question-sign" href="livroOrg" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos completos em eventos
+                            Trabalhos completos em eventos
+                            <a class="glyphicon glyphicon-question-sign" href="trabEve" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+                            Banca de Mestrado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+                            Banca de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+                            Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída 
+                            Orientação de Doutorado em andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída
+                            Co-orientação de Doutorado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída 
+                            Orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída
+                            Co-orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+                            Orientação Iniciação Científica andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
 			</div>
 		</div>
 		
 		<div id="social" class="formulario" style="display:none;">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Regime de Dedicação Exclusiva
+                            Regime de Dedicação Exclusiva
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Doutor
+                            Doutor
+                            <a class="glyphicon glyphicon-question-sign" href="Doutor" target="_blank"></a>    
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos em periódico indexados *
+                            Artigos completos em periódico indexados *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação *
+                            Artigos completos aceitos para publicação *
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados (limite máximo de 3)
+                            Livros publicados (limite máximo de 3)
+                            <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros (limite máximo de 12)
+                            Capitulos de livros (limite máximo de 12)
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros (limite máximo de 3)
+                            Organização de livros (limite máximo de 3)
+                            <a class="glyphicon glyphicon-question-sign" href="livroOrg" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos completos em eventos (limite máximo de 18)
+                            Trabalhos completos em eventos (limite máximo de 18)
+                            <a class="glyphicon glyphicon-question-sign" href="trabEve" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa (limite máximo de 18)
+                            Banca de Mestrado externa ao programa (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa (limite máximo de 18)
+                            Banca de Doutorado externa ao programa (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa (limite máximo de 18)
+                            Banca de Qualificação de Doutorado externa ao programa (limite máximo de 18)
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída (limite máximo de 18)
+                            Orientação de Doutorado em andamento/concluída (limite máximo de 18)
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída (limite máximo de 18)
+                            Co-orientação de Doutorado em andamento/concluída (limite máximo de 18)
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída  (limite máximo de 18)
+                            Orientação de Mestrado em andamento/concluída  (limite máximo de 18)
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída (limite máximo de 18)
+                            Co-orientação de Mestrado em andamento/concluída (limite máximo de 18)
+                            <a class="glyphicon glyphicon-question-sign" href="CoriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída  (limite máximo de 18)
+                            Orientação Iniciação Científica andamento/concluída  (limite máximo de 18)
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
 			</div>
                         <div>
                             <br><br>
@@ -447,158 +525,185 @@ body {
 		<div id="humanas" class="formulario" style="display:none;">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Regime de Dedicação Exclusiva
+                            Regime de Dedicação Exclusiva
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+                            Artigos completos em periódico indexados
+                            <a class="glyphicon glyphicon-question-sign" href="artComplInd" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+                            Artigos completos aceitos para publicação
+                            <a class="glyphicon glyphicon-question-sign" href="artComplAceito" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+                            Livros publicados
+                            <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+                            Capitulos de livros
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros
+                            Organização de livros
+                            <a class="glyphicon glyphicon-question-sign" href="livroOrg" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos completos em eventos
+                            Trabalhos completos em eventos
+                            <a class="glyphicon glyphicon-question-sign" href="trabEve" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+                            Banca de Mestrado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+                            Banca de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+                            Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída 
+                            Orientação de Doutorado em andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída
+                            Co-orientação de Doutorado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída 
+                            Orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída
+                            Co-orientação de Mestrado em andamento/concluída
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+                            Orientação Iniciação Científica andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
 			</div>
 		</div>
 		
 		<div id="letras" class="formulario" style="display:none;">
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Regime de Dedicação Exclusiva
+                            Regime de Dedicação Exclusiva
+                            <a class="glyphicon glyphicon-question-sign" href="dedExc" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos em periódico indexados
+                            Artigos completos em periódico indexados
+                            <a class="glyphicon glyphicon-question-sign" href="artComplInd" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Artigos completos aceitos para publicação
+                            Artigos completos aceitos para publicação
+                            <a class="glyphicon glyphicon-question-sign" href="artComplAceito" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Livros publicados
+                            Livros publicados
+                            <a class="glyphicon glyphicon-question-sign" href="livroPublic" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Capitulos de livros
+                            Capitulos de livros
+                            <a class="glyphicon glyphicon-question-sign" href="capLivro" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Organização de livros
+                            Organização de livros
+                            <a class="glyphicon glyphicon-question-sign" href="livroOrg" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Trabalhos completos em eventos
+                            Trabalhos completos em eventos
+                            <a class="glyphicon glyphicon-question-sign" href="trabEve" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes nacionais
+                            Depósitos de patentes nacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patNac" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Depósitos de patentes internacionais
+                            Depósitos de patentes internacionais
+                            <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Produção artistica coletiva em âmbito nacional
+                            Produção artistica coletiva em âmbito nacional
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Produção artística individual em âmbito nacional
+                            Produção artística individual em âmbito nacional
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Produção artística coletiva em âmbito internacional
+                            Produção artística coletiva em âmbito internacional
 			</div>
                         <div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Produção artística individual em âmbito internacional
+                            Produção artística individual em âmbito internacional
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Mestrado externa ao programa
+                            Banca de Mestrado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Doutorado externa ao programa
+                            Banca de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
-				Banca de Qualificação de Doutorado externa ao programa
+                            Banca de Qualificação de Doutorado externa ao programa
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Doutorado em andamento/concluída 
+                            Orientação de Doutorado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Doutorado em andamento/concluída
+                            Co-orientação de Doutorado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriDouAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação de Mestrado em andamento/concluída 
+                            Orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="OriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Co-orientação de Mestrado em andamento/concluída
+                            Co-orientação de Mestrado em andamento/concluída
+                            <a class="glyphicon glyphicon-question-sign" href="CoriMesAndCon" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
-				Orientação Iniciação Científica andamento/concluída 
+                            Orientação Iniciação Científica andamento/concluída 
+                            <a class="glyphicon glyphicon-question-sign" href="OriIcAndConc" target="_blank"></a>
 			</div>
 		</div>
 	</div>  

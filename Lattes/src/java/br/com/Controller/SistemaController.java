@@ -93,4 +93,100 @@ public class SistemaController {
 		
 		return "null";
 	}
+        
+        @RequestMapping("/artComplInd")
+	public String artComplInd() {
+		return "criterio/artComplInd";
+	}
+        
+        @RequestMapping("/artComplAceito")
+	public String artComplAceito() {
+		return "criterio/artComplAceito";
+	}
+        
+        @RequestMapping("/livroPublic")
+	public String livroPublic() {
+		return "criterio/livroPublic";
+	}
+        @RequestMapping("/livroOrg")
+	public String livroOrg() {
+		return "criterio/livroOrg";
+	}
+        @RequestMapping("/capLivro")
+	public String capLivro() {
+		return "criterio/capLivro";
+	}
+        @RequestMapping("/trabEve")
+	public String trabEve() {
+		return "criterio/trabEve";
+	}
+        @RequestMapping("/OriDouAndCon")
+	public String OriDouAndCon() {
+		return "criterio/OriDouAndCon";
+	}
+        @RequestMapping("/CoriDouAndCon")
+	public String CoriDouAndCon() {
+		return "criterio/CoriDouAndCon";
+	}
+        @RequestMapping("/OriMesAndCon")
+	public String OriMesAndCon() {
+		return "criterio/OriMesAndCon";
+	}
+        @RequestMapping("/CoriMesAndCon")
+	public String CoriMesAndCon() {
+		return "criterio/CoriMesAndCon";
+	}
+        @RequestMapping("/OriIcAndConc")
+	public String OriIcAndConc() {
+		return "criterio/OriIcAndConc";
+	}
+        @RequestMapping("/dedExc")
+	public String dedExc() {
+		return "criterio/dedExc";
+	}
+        @RequestMapping("/patNac")
+	public String patNac() {
+		return "criterio/patNac";
+	}
+        @RequestMapping("/patInt")
+	public String patInt() {
+		return "criterio/patInt";
+	}
+        @RequestMapping("/TraEvInt")
+	public String TraEvInt() {
+		return "criterio/TraEvInt";
+	}
+        @RequestMapping("/TraEvNac")
+	public String TraEvNac() {
+		return "criterio/TraEvNac";
+	}
+        @RequestMapping("/OriDouAnd")
+	public String OriDouAnd() {
+		return "criterio/OriDouAnd";
+	}
+        @RequestMapping("/OriMesAnd")
+	public String OriMesAnd() {
+		return "criterio/OriMesAnd";
+	}
+        @RequestMapping("/OriDouCon")
+	public String OriDouCon() {
+		return "criterio/OriDouCon";
+	}
+        @RequestMapping("/OriMesCon")
+	public String OriMesCon() {
+		return "criterio/OriMesCon";
+	}
+        @RequestMapping("/CoriDouCon")
+	public String CoriDouCon() {
+		return "criterio/CoriDouCon";
+	}
+        @RequestMapping("/CoriMesCon")
+	public String CoriMesCon() {
+		return "criterio/CoriMesCon";
+	}
+        @RequestMapping("/Doutor")
+	public String Doutor() {
+		return "criterio/Doutor";
+	}
+        
 }
