@@ -156,9 +156,9 @@ public class AvaliadorDefault{
           //  avaliaLivrosOrganizado(xpath, result, document);
             avaliaCapitulosPublicados(xpath, result, document);
             setPatentes(xpath, result, document);
-            //setBancaMestrado(xpath, result, document);
-            //setBancaDoutorado(xpath, result, document);
-            //setBancaQualificacao(xpath, result, document);
+            setBancaMestrado(xpath, result, document);
+            setBancaDoutorado(xpath, result, document);
+            setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
@@ -274,9 +274,9 @@ public class AvaliadorDefault{
             avaliaLivrosOrganizado(xpath, result, document);
             avaliaTrabalhoEmEventosGeral(xpath, result, document);
             setPatentes(xpath, result, document);
-            //setBancaMestrado(xpath, result, document);
-            //setBancaDoutorado(xpath, result, document);
-            //setBancaQualificacao(xpath, result, document);
+            setBancaMestrado(xpath, result, document);
+            setBancaDoutorado(xpath, result, document);
+            setBancaQualificacao(xpath, result, document);
             setOrientacaoDouAndConclu(xpath, result, document);
             setCorientacaoDouAndConclu(xpath, result, document);
             setOrientacaoMesAndConclu(xpath, result, document);
