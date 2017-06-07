@@ -405,16 +405,19 @@ body {
                             <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Mestrado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancMes" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancDou" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Qualificação de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancQuaDou" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -585,16 +588,19 @@ body {
                             <a class="glyphicon glyphicon-question-sign" href="patInt" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Mestrado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancMes" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancDou" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Qualificação de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancQuaDou" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
@@ -685,16 +691,19 @@ body {
                             Produção artística individual em âmbito internacional
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Mestrado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancMes" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancDou" target="_blank"></a>
 			</div>
 			<div>
-			<span class="glyphicon glyphicon-remove-circle red" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>
                             Banca de Qualificação de Doutorado externa ao programa
+                            <a class="glyphicon glyphicon-question-sign" href="BancQuaDou" target="_blank"></a>
 			</div>
 			<div>
 			<span class="glyphicon glyphicon-ok-circle green" aria-hidden="true"></span>

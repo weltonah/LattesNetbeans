@@ -44,7 +44,7 @@
                  <li>Travas da aplicadas [Socias Aplicada]</li>
                  <li>Criação de explicação de criterios analisados</li>
                  <li>Ativo o criterio de analise de trabalho de conclusão de curso</li>
-                 <li>Ativo o criterio de Bancas externas para Exatas,sociais e Biologicas</li>
+                 <li>Ativo o criterio de Bancas externas para Exatas,sociais e Biologicas, saude, humanas e linguistica</li>
                  <li>criação de log do sistema</li>
             </ul>
             <li>versão 1.2.0 (01/06/2017)</li>

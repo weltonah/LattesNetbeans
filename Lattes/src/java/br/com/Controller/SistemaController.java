@@ -35,9 +35,9 @@ import org.springframework.util.FileCopyUtils;
 @Controller
 public class SistemaController {
         //linux
-        //int so = 1;
+        int so = 1;
         //win
-        int so = 2;
+        //int so = 2;
         String rootPath;
         
        
