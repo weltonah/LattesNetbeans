@@ -108,6 +108,7 @@ public class SistemaController {
                                         ipAddress = request.getRemoteAddr();
                                     }
                                 }
+                                fileName = fileName + " " + aux;
                                 log.grava(ipAddress,fileName);
 				model.addAttribute("resultado", result);
                                 bytes.clone();
