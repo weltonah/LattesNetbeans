@@ -37,6 +37,12 @@
         <div class="col-sm-6">
         <h3>Atualizações do sistema</h3>
         <ul>
+            <li>versão 1.2.2 (22/06/2017)</li>
+             <ul>
+                 <li>Correções na analise de orientações em andamentos da engenharia</li>
+                 <li>Alteração da contabilização de dedicação exclusiva</li>
+                 
+            </ul>
             <li>versão 1.2.1 (05/06/2017)</li>
              <ul>
                  <li>inclusão de link para sugestão</li>

@@ -650,22 +650,38 @@ public class AvaliadorDefault{
         result.setNomeCompleto(expr.evaluate(document));
     }
 
+    
+    
     private void avaliaVinculoDedicacaoExclusiva(XPath xpath, Resultado result, Document document) throws XPathExpressionException {
-        XPathExpression expr = xpath.compile("string(//ATUACAO-PROFISSIONAL[@NOME-INSTITUICAO='Universidade Federal de Juiz de Fora']/VINCULOS[@ANO-FIM='']/@FLAG-DEDICACAO-EXCLUSIVA)");
+        XPathExpression expr = xpath.compile("//ATUACAO-PROFISSIONAL");
         String dexc = expr.evaluate(document);
         Levantamento levante = new Levantamento();
         levante.setTipoObra("Regime de Dedicação Exclusiva");
         Obras obra = new Obras();
-        if (dexc.contains("SIM")) {
-        	levante.setTotalValor(DEDICACAO_EXCLUSIVA);
-        	obra.setValor(DEDICACAO_EXCLUSIVA);
-        	result.someTotal(DEDICACAO_EXCLUSIVA);
-        	obra.setNome("Possui o regime de Dedicação Exclusiva");
-        } else {
-        	levante.setTotalValor(0);
-        	obra.setValido(true);
-        	obra.setValor(0);
-        	obra.setNome("Não possui  o regime de Dedicação Exclusiva");
+        NodeList dedicacao = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
+        levante.setTotalValor(0);
+        obra.setValido(true);
+        obra.setValor(0);
+        obra.setNome("Não possui  o regime de Dedicação Exclusiva");
+        for (int i = 0; i < dedicacao.getLength(); i++) {
+            Node dedicacaoNode = dedicacao.item(i);
+            String local = dedicacaoNode.getAttributes().getNamedItem("NOME-INSTITUICAO").getTextContent();
+            if(local.equals("Universidade Federal de Juiz de Fora")){
+                NodeList vinculo = dedicacaoNode.getChildNodes();
+                for (int j = 0; j < vinculo.getLength(); j++) {
+                    Node vinculoNode = vinculo.item(j);
+                    if(vinculoNode.getNodeName().equals("VINCULOS")
+                    && vinculoNode.getAttributes().getNamedItem("FLAG-DEDICACAO-EXCLUSIVA").getTextContent().equals("SIM")
+                    && vinculoNode.getAttributes().getNamedItem("ANO-FIM").getTextContent().equals("")){
+                        levante.setTotalValor(DEDICACAO_EXCLUSIVA);
+                        obra.setValor(DEDICACAO_EXCLUSIVA);
+                        result.someTotal(DEDICACAO_EXCLUSIVA);
+                        obra.setNome("Possui o regime de Dedicação Exclusiva");
+                        i = dedicacao.getLength();
+                        break;
+                    }
+                }
+            }
         }
         levante.AddObra(obra);
         levante.setValorItem(DEDICACAO_EXCLUSIVA);
@@ -1035,12 +1051,12 @@ public class AvaliadorDefault{
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
             	obra.setNome("Orientação de Mestrado em concluída ("+ ano + ") " + titulo + ", " + aluno);
-            	    if(ano <= ANO_TRIENIO || (aux>=MAX_ORIENTACAO_MS_AND_CONC && MAX_ORIENTACAO_MS_AND_CONC>0)){
+                if(ano <= ANO_TRIENIO || (aux>=MAX_ORIENTACAO_MS_AND_CONC && MAX_ORIENTACAO_MS_AND_CONC>0)){
                     obra.setValido(false);
                     if(aux>=MAX_ORIENTACAO_MS_AND_CONC && MAX_ORIENTACAO_MS_AND_CONC>0)
                             obra.setValor(-1);
                     else
-                    obra.setValor(ORIENTACAO_MS_AND_CONC);
+                        obra.setValor(ORIENTACAO_MS_AND_CONC);
                 }
                 else{
                         comp = comp+ORIENTACAO_MS_AND_CONC;
@@ -1138,17 +1154,17 @@ public class AvaliadorDefault{
             obra = new Obras();
             if (tipo.equalsIgnoreCase("ORIENTADOR_PRINCIPAL")) {
                 obra.setNome("Orientação  de Doutorado em Andamento (" + ano + ") " + titulo + "," + aluno);
-                    if(ano <= ANO_TRIENIO || (aux>=MAX_COORIENTACAO_MS_AND_CONC && MAX_COORIENTACAO_MS_AND_CONC>0)){
+                    if(ano <= ANO_TRIENIO || (aux>=MAX_ORIENTACAO_DR_AND && MAX_ORIENTACAO_DR_AND>0)){
                     obra.setValido(false);
-                    if(aux>=MAX_COORIENTACAO_MS_AND_CONC && MAX_COORIENTACAO_MS_AND_CONC>0)
+                    if(aux>=MAX_ORIENTACAO_DR_AND && MAX_ORIENTACAO_DR_AND>0)
                             obra.setValor(-1);
                     else
-                    obra.setValor(COORIENTACAO_MS_AND_CONC);
+                    obra.setValor(ORIENTACAO_DR_AND);
                 }
                 else{
-                        comp = comp+COORIENTACAO_MS_AND_CONC;
+                        comp = comp+ORIENTACAO_DR_AND;
                         aux++;
-                        obra.setValor(COORIENTACAO_MS_AND_CONC);
+                        obra.setValor(ORIENTACAO_DR_AND);
                 }
                 levante.AddObra(obra);
             }
