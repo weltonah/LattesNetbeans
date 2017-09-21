@@ -3,16 +3,11 @@ package br.com.Controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,14 +16,12 @@ import br.com.Analise.LattesMetricService;
 import br.com.DAO.CriterioDao;
 import br.com.DAO.Log;
 import br.com.Modelo.Criterios;
-import br.com.Modelo.Pesquisador;
 import br.com.Modelo.Resultado;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
-import java.time.Clock;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.util.FileCopyUtils;
 
@@ -45,6 +38,11 @@ public class SistemaController {
 	public String criterio() {
 	return "criterio";
         //return "manutencao";
+	}
+        
+        @RequestMapping("/agenda")
+	public String agenda() {
+	return "agenda";
 	}
         @RequestMapping("/")
 	public String index() {
@@ -71,52 +69,52 @@ public class SistemaController {
 		File convFile = new File( file2.getOriginalFilename());
                 String fileName = null;
 		String aux = (String) session.getAttribute("area");
-			try {
-                            
-				byte[] bytes = file2.getBytes();
-				fileName = file2.getOriginalFilename();
-                                 System.out.println(fileName);
-				CriterioDao criDao = new CriterioDao();
-				Criterios crit = criDao.preencher(aux); 
-                                String text = "null";
-                                if(so==1){
-                                    rootPath = "/var/lib/tomcat7/webapps/Lattes";
-                                    text = rootPath + "/log.txt";
-                                }
-                                else{
-                                    rootPath= "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Lattes";
-                                    text = rootPath + "\\log.txt";
-                                }
-				File file = new File(rootPath + File.separator + "tmpFiles");
-				// Create the file on server
-                                if (!file.exists())
-					file.mkdirs();
-				File serverFile = new File(file.getAbsolutePath() + File.separator + fileName);
-                                BufferedOutputStream stream;
-                                stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                                stream.write(bytes);
-                                stream.close();
-				
-				Resultado result = LattesMetricService.getPesquisador2(serverFile, crit);
-                                
-                                
-                                Log log = new Log(text);
-                                String ipAddress = request.getHeader("x-forwarded-for");
-                                if (ipAddress == null) {
-                                    ipAddress = request.getHeader("X_FORWARDED_FOR");
-                                    if (ipAddress == null){
-                                        ipAddress = request.getRemoteAddr();
-                                    }
-                                }
-                                fileName = fileName + " " + aux;
-                                log.grava(ipAddress,fileName);
-				model.addAttribute("resultado", result);
-                                bytes.clone();
-				return "analise";
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				return e.getMessage();
-			}
+                try {
+
+                        byte[] bytes = file2.getBytes();
+                        fileName = file2.getOriginalFilename();
+                         System.out.println(fileName);
+                        CriterioDao criDao = new CriterioDao();
+                        Criterios crit = criDao.preencher(aux); 
+                        String text = "null";
+                        if(so==1){
+                            rootPath = "/var/lib/tomcat7/webapps/Lattes";
+                            text = rootPath + "/log.txt";
+                        }
+                        else{
+                            rootPath= "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\Lattes";
+                            text = rootPath + "\\log.txt";
+                        }
+                        File file = new File(rootPath + File.separator + "tmpFiles");
+                        // Create the file on server
+                        if (!file.exists())
+                                file.mkdirs();
+                        File serverFile = new File(file.getAbsolutePath() + File.separator + fileName);
+                        BufferedOutputStream stream;
+                        stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                        stream.write(bytes);
+                        stream.close();
+
+                        Resultado result = LattesMetricService.getPesquisador2(serverFile, crit);
+
+
+                        Log log = new Log(text);
+                        String ipAddress = request.getHeader("x-forwarded-for");
+                        if (ipAddress == null) {
+                            ipAddress = request.getHeader("X_FORWARDED_FOR");
+                            if (ipAddress == null){
+                                ipAddress = request.getRemoteAddr();
+                            }
+                        }
+                        fileName = fileName + " " + aux;
+                        log.grava(ipAddress,fileName);
+                        model.addAttribute("resultado", result);
+                        bytes.clone();
+                        return "analise";
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        return e.getMessage();
+                }
 	}
         
 	@RequestMapping("/log")
